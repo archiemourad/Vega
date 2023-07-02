@@ -154,6 +154,7 @@
     <ClInclude Include="Dependencies.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Vega.h" />
+    <ClInclude Include="VWin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
