@@ -1,6 +1,9 @@
-#include <Windows.h>
-
 #include "Vega.h"
+#include "Helpers.h"
+
+#define NAME L"WinMain.cpp"
+
+using namespace Vega;
 
 LRESULT CALLBACK WndProc(
 	HWND hWnd,
@@ -13,6 +16,7 @@ LRESULT CALLBACK WndProc(
 	{
 	case WM_CLOSE:
 		PostQuitMessage(0);
+		Helpers::Output(L"Quit!", std::wstring(), NAME);
 		break;
 	}
 
