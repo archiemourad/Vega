@@ -58,6 +58,18 @@ void Core::Window::Run()
 	glDeleteShader(VS);
 	glDeleteShader(FS);
 
+	// Projection / View / Model
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float) width / height, 0.1f, 100.0f);
+	glm::mat4 view = glm::lookAt(
+		glm::vec3(5, 5, -5), // Camera position in world space.
+		glm::vec3(0, 0, 0), // Looking at world origin.
+		glm::vec3(0, 1, 0) // Head is up ((0, -1, 0) to look upside down).
+	);
+	glm::mat4 model = glm::mat4(1.0f);
+
+	glm::mat4 mvp = projection * view * model;
+	GLuint mvpLocation = glGetUniformLocation(SP, "mvp");
+
 	do {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -67,6 +79,9 @@ void Core::Window::Run()
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
 		glUseProgram(SP);
+
+		// Serve to shader.
+		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 
 		// Draw.
 		glDrawArrays(GL_TRIANGLES, 0, 3);
