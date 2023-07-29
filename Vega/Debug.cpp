@@ -32,7 +32,7 @@ std::wstring Helpers::Debug::Time::GetTime()
     char buffer[100];
     ctime_s(buffer, sizeof(buffer), &now);
 
-    return Formatting::TrimNewline(std::wstring(buffer, buffer + strlen(buffer)));
+    return Formatting::TrimNewline(std::wstring(&buffer[0], &buffer[strlen(buffer)]));
 }
 
 std::wstring Helpers::Debug::Formatting::TrimNewline(std::wstring str)

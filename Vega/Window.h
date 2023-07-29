@@ -5,6 +5,8 @@
 
 #include "Debug.h"
 
+#include "Compiler.h"
+
 namespace Vega
 {
 	namespace Core
@@ -20,8 +22,7 @@ namespace Vega
 		private:
 			GLFWwindow* window;
 
-			int width;
-			int height;
+			int width, height;
 		};
 	}
 }
