@@ -146,6 +146,7 @@
     <ClCompile Include="Compiler.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Instance.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Reader.cpp" />
     <ClCompile Include="Conversion.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="GL.h" />
     <ClInclude Include="GLM.h" />
     <ClInclude Include="Instance.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Reader.h" />
     <ClInclude Include="Conversion.h" />
     <ClInclude Include="Window.h" />

@@ -37,6 +37,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{f2f31677-aaa6-456e-a9ba-a9b68395f4f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Loader">
+      <UniqueIdentifier>{78639bed-34ff-40a9-a7ae-9cfbf8cb36cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Loader">
+      <UniqueIdentifier>{10e876d3-1e6f-43f9-a153-4e4e3cfb2793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="Conversion.cpp">
       <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Loader.cpp">
+      <Filter>Source Files\Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Conversion.h">
       <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader.h">
+      <Filter>Header Files\Loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
