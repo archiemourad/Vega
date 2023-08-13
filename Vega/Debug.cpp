@@ -11,7 +11,19 @@ std::wstring Helpers::Debug::Log(std::wstring msg)
     return msg;
 }
 
-std::wstring Helpers::Debug::Error(std::wstring msg, const bool fatal, const int code)
+std::wstring Vega::Helpers::Debug::DentLog(std::wstring msg, int count)
+{
+    std::wstring indents;
+    for (unsigned int i = 0; i < count; i++) indents += L"\t";
+
+    msg = indents + L" -> \t" + msg;
+
+    std::wcout << msg << "\n";
+
+    return msg;
+}
+
+std::wstring Helpers::Debug::Error(std::wstring msg, bool fatal, int code)
 {
     MessageBox(NULL, msg.c_str(), L"Error", MB_ICONERROR | MB_OK);
 

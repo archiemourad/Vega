@@ -2,11 +2,31 @@
 
 using namespace Vega;
 
-std::vector<GLfloat> Loader::LoadObjectFile(const std::wstring filePath)
+std::pair<std::vector<GLfloat>, std::vector<unsigned int>> Loader::LoadObjectFile(const std::wstring filePath)
 {
+    Helpers::Debug::Log(L"Loading object file: " + filePath + L"!");
+
+    const std::pair<bool, std::vector<GLfloat>> vertices = LoadObjectVertices(filePath);
+    const std::pair<bool, std::vector<unsigned int>> indices = ComputeIndices(vertices.second);
+
+    std::wstring result;
+
+    result = vertices.first ? L"Success!" : L"Failed!";
+    Helpers::Debug::DentLog(L"Vertex loading: " + result);
+
+    result = indices.first ? L"Success!" : L"Failed!";
+    Helpers::Debug::DentLog(L"Index computation: " + result);
+
+    return { vertices.second, indices.second };
+}
+
+std::pair<bool, std::vector<GLfloat>> Loader::LoadObjectVertices(const std::wstring filePath)
+{
+    bool result = true;
+
     std::ifstream file(filePath);
 
-    std::vector<GLfloat> output;
+    std::vector<GLfloat> vertices;
     std::string line;
 
     if (file.is_open()) {
@@ -19,17 +39,53 @@ std::vector<GLfloat> Loader::LoadObjectFile(const std::wstring filePath)
                 GLfloat x, y, z;
                 iss >> x >> y >> z;
 
-                output.insert(output.end(), { x, y, z });
+                vertices.insert(vertices.end(), { x, y, z });
             }
         }
 
         file.close();
-
-        Helpers::Debug::Log(L"Loaded object file: " + filePath + L"!");
-    } else {
-        Helpers::Debug::Error(L"Failed to open file: " + filePath + L"!");
+    }
+    else {
+        result = false;
     }
 
-    return output;
+    if (vertices.empty()) result = false;
+
+    return { result, vertices };
+}
+
+std::pair<bool, std::vector<unsigned int>> Loader::ComputeIndices(const std::vector<GLfloat>& vertices)
+{
+    bool result = true;
+
+    std::map<unsigned int, GLfloat> map;
+
+    bool found = false;
+
+    for (unsigned int i = 0; i < vertices.size(); i++) {
+        found = false;
+
+        for (const auto& [key, value] : map) {
+            if (value == vertices[i]) {
+                map.insert({ key, vertices[i] });
+                found = true;
+            };
+
+            break;
+        }
+
+        if (!found) map.insert({ i, vertices[i] });
+    }
+
+    std::vector<unsigned int> indices;
+    indices.reserve(map.size());
+
+    for (const auto& [key, value] : map) {
+        indices.push_back(key);
+    }
+
+    if (indices.empty()) result = false;
+
+    return { result, indices };
 }
 

@@ -31,20 +31,19 @@ void Core::Window::Run()
 {
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	const GLfloat vertices[] = {
-	   -1.0f, -1.0f, 0.0f,
-	   1.0f, -1.0f, 0.0f,
-	   0.0f,  1.0f, 0.0f,
-	};
-
 	GLuint VAO;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
+	GLuint EBO;
+	glGenBuffers(1, &EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices.front(), GL_STATIC_DRAW);
+
 	GLuint VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), &vertices.front(), GL_STATIC_DRAW);
 
 	// Vertex shader.
 	const GLuint VS = Compiler::CompileVertexShader(L"Shaders/vertex.glsl");
@@ -74,6 +73,8 @@ void Core::Window::Run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Setup.
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -84,7 +85,12 @@ void Core::Window::Run()
 		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 
 		// Draw.
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(
+			GL_TRIANGLES, // Mode.
+			indices.size(), // Count.
+			GL_UNSIGNED_INT, // Type.
+			(void*)0 // Element array buffer offset.
+		);
 
 		// Cleanup.
 		glDisableVertexAttribArray(0);
@@ -92,5 +98,21 @@ void Core::Window::Run()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	} while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
+}
+
+void Core::Window::DualPassIntoBuffers(const std::pair<std::vector<GLfloat>, std::vector<unsigned int>>& data)
+{
+	PassVerticesIntoBuffer(data.first);
+	PassIndicesIntoBuffer(data.second);
+}
+
+void Core::Window::PassIndicesIntoBuffer(const std::vector<unsigned int>& indices)
+{
+	this->indices.insert(this->indices.end(), indices.begin(), indices.end());
+}
+
+void Core::Window::PassVerticesIntoBuffer(const std::vector<GLfloat>& vertices)
+{
+	this->vertices.insert(this->vertices.end(), vertices.begin(), vertices.end());
 }
 
