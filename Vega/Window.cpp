@@ -58,7 +58,7 @@ void Core::Window::Run()
 	glDeleteShader(FS);
 
 	// Projection / View / Model
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float) width / height, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / height, 0.1f, 100.0f);
 	glm::mat4 view = glm::lookAt(
 		glm::vec3(5, 5, -5), // Camera position in world space.
 		glm::vec3(0, 0, 0), // Looking at world origin.
@@ -87,7 +87,7 @@ void Core::Window::Run()
 		// Draw.
 		glDrawElements(
 			GL_TRIANGLES, // Mode.
-			indices.size(), // Count.
+			(GLsizei)indices.size(), // Count.
 			GL_UNSIGNED_INT, // Type.
 			(void*)0 // Element array buffer offset.
 		);

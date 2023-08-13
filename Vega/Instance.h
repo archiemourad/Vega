@@ -1,5 +1,4 @@
 #pragma once
-// Deps.
 #include "GL.h"
 
 #include "Debug.h"
@@ -10,10 +9,14 @@ namespace Vega
 	{
 		namespace Instance
 		{
-			// Basic setup.
+			/// <summary>
+			/// Primitive setup.
+			/// </summary>
 			void Setup();
 
-			// GLFW termination & basic cleanup.
+			/// <summary>
+			/// GLFW termination and primitive cleanup.
+			/// </summary>
 			void Cleanup();
 		}
 	}

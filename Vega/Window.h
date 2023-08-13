@@ -1,10 +1,8 @@
 #pragma once
-// Deps.
 #include "GL.h"
 #include "GLM.h"
 
 #include "Debug.h"
-
 #include "Compiler.h"
 
 namespace Vega
@@ -14,25 +12,42 @@ namespace Vega
 		class Window
 		{
 		public:
-			// Window setup & initialization.
+			/// <summary>
+			/// Window setup and initialization.
+			/// </summary>
+			/// <param name="title"></param>
+			/// <param name="width"></param>
+			/// <param name="height"></param>
 			Window(const char* title, const int width, const int height);
 
-			// Runs the window (starts render).
+			/// <summary>
+			/// Begins the rendering process.
+			/// </summary>
 			void Run();
 
-			// Pass vertices and indices into the buffers.
+			/// <summary>
+			/// Pass vertices and indices into the buffers.
+			/// </summary>
+			/// <param name="data"></param>
 			void DualPassIntoBuffers(const std::pair<std::vector<GLfloat>, std::vector<unsigned int>>& data);
-			// Pass indices directly into the index buffer.
+
+			/// <summary>
+			/// Unsafe! Pass indices directly into the index buffer.
+			/// </summary>
+			/// <param name="indices"></param>
 			void PassIndicesIntoBuffer(const std::vector<unsigned int>& indices);
-			// Pass vertices directly into the vertex buffer.
+			/// <summary>
+			/// Unsafe! Pass vertices directly into the vertex buffer.
+			/// </summary>
+			/// <param name="vertices"></param>
 			void PassVerticesIntoBuffer(const std::vector<GLfloat>& vertices);
 		private:
 			GLFWwindow* window;
 
 			int width, height;
 
-			std::vector<unsigned int> indices;
-			std::vector<GLfloat> vertices;
+			std::vector<unsigned int> indices{ 1 };
+			std::vector<GLfloat> vertices{ 0, 0, 0 };
 		};
 	}
 }

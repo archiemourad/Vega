@@ -1,8 +1,6 @@
 #include "Debug.h"
 #include "Instance.h"
-
 #include "Window.h"
-
 #include "Loader.h"
 
 using namespace Vega;

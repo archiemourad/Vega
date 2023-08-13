@@ -1,21 +1,32 @@
 #pragma once
-// Deps.
 #include "GL.h"
 
 #include "Conversion.h"
-
 #include "Reader.h"
 
 namespace Vega
 {
 	namespace Compiler
 	{
-		// Compile a vertex shader.
+		/// <summary>
+		/// Compile a vertex shader.
+		/// </summary>
+		/// <param name="filePath"></param>
+		/// <returns>A GLuint loaded with a vertex shader.</returns>
 		GLuint CompileVertexShader(const std::wstring filePath);
-		// Compile a fragment shader.
+		/// <summary>
+		/// Compile a fragment shader.
+		/// </summary>
+		/// <param name="filePath"></param>
+		/// <returns>A GLuint loaded with a fragment shader.</returns>
 		GLuint CompileFragmentShader(const std::wstring filePath);
 
-		// Assemble a shader program.
+		/// <summary>
+		/// Assemble a shader program.
+		/// </summary>
+		/// <param name="vertexShader"></param>
+		/// <param name="fragmentShader"></param>
+		/// <returns>A GLuint loaded with a shader program.</returns>
 		GLuint AssembleShaderProgram(GLuint vertexShader, GLuint fragmentShader);
 	}
 }
