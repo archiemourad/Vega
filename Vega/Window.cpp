@@ -43,7 +43,7 @@ void Core::Window::Run()
 	GLuint VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), &vertices.front(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices.front(), GL_STATIC_DRAW);
 
 	// Vertex shader.
 	const GLuint VS = Compiler::CompileVertexShader(L"Shaders/vertex.glsl");
@@ -100,19 +100,13 @@ void Core::Window::Run()
 	} while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
 }
 
-void Core::Window::DualPassIntoBuffers(const std::pair<std::vector<GLfloat>, std::vector<unsigned int>>& data)
+bool Core::Window::PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data)
 {
-	PassVerticesIntoBuffer(data.first);
-	PassIndicesIntoBuffer(data.second);
-}
+	if (data.first.empty() || data.second.empty()) return false; // Empty check.
 
-void Core::Window::PassIndicesIntoBuffer(const std::vector<unsigned int>& indices)
-{
-	this->indices.insert(this->indices.end(), indices.begin(), indices.end());
-}
+	indices.insert(indices.end(), data.first.begin(), data.first.end());
+	vertices.insert(vertices.end(), data.second.begin(), data.second.end());
 
-void Core::Window::PassVerticesIntoBuffer(const std::vector<GLfloat>& vertices)
-{
-	this->vertices.insert(this->vertices.end(), vertices.begin(), vertices.end());
+	return true;
 }
 

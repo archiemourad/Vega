@@ -2,35 +2,37 @@
 
 using namespace Vega;
 
-std::pair<std::vector<GLfloat>, std::vector<unsigned int>> Loader::LoadObjectFile(const std::wstring filePath)
+std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> Loader::LoadObjectFile(const std::wstring filePath)
 {
+	bool result = true;
+
 	Helpers::Debug::Log(L"Loading object file: " + filePath + L"!");
 
-	const std::pair<bool, std::vector<GLfloat>> vertices = LoadObjectVertices(filePath);
-	const std::pair<bool, std::vector<unsigned int>> indices = ComputeIndices(vertices.second);
+	const std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> data = ReadObjectFile(filePath);
 
-	std::wstring result;
+	if (!data.first) result = false;
 
-	result = vertices.first ? L"Success!" : L"Failed!";
-	Helpers::Debug::DentLog(L"Vertex loading: " + result);
+	std::wstring reading = result ? L"Success!" : L"Failed!";
+	Helpers::Debug::DentLog(L"Reading: " + reading);
 
-	result = indices.first ? L"Success!" : L"Failed!";
-	Helpers::Debug::DentLog(L"Index computation: " + result);
+	if (!result) {
+		Helpers::Debug::Log(L"Warning! Fallback. Object loading failed.");
 
-	if (!vertices.first && !indices.first) {
-		Helpers::Debug::Log(L"Warning! Object [" + filePath + L"] loading & index computation failed.");
+		return { std::vector<unsigned int>{ 0 }, std::vector<glm::vec3>{ glm::vec3(0, 0, 0) } };
 	}
 
-	return { vertices.second, indices.second };
+	return { data.second.first, data.second.second };
 }
 
-std::pair<bool, std::vector<GLfloat>> Loader::LoadObjectVertices(const std::wstring filePath)
+std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> Loader::ReadObjectFile(const std::wstring filePath)
 {
 	bool result = true;
 
 	std::ifstream file(filePath);
 
-	std::vector<GLfloat> vertices;
+	std::vector<unsigned int> indices;
+	std::vector<glm::vec3> vertices;
+
 	std::string line;
 
 	if (file.is_open()) {
@@ -40,10 +42,32 @@ std::pair<bool, std::vector<GLfloat>> Loader::LoadObjectVertices(const std::wstr
 			iss >> prefix;
 
 			if (prefix == "v") {
-				GLfloat x, y, z;
-				iss >> x >> y >> z;
+				glm::vec3 vertex;
+				iss >> vertex.x >> vertex.y >> vertex.z;
 
-				vertices.insert(vertices.end(), { x, y, z });
+				vertices.push_back(vertex);
+			}
+
+			std::replace(line.begin(), line.end(), '/', ' '); // Format.
+			std::istringstream fiss(line);
+			fiss >> prefix;
+
+			if (prefix == "f") {
+				unsigned int values[3] = { 0, 0, 0 };
+
+				std::string word;
+				unsigned int pos = 0;
+
+				for (unsigned int i = 0; i < 9; i++) {
+					fiss >> word;
+
+					if (i % 3 == 0) {
+						values[pos] = stoi(word);
+						pos++;
+					}
+				}
+
+				for (unsigned int value : values) indices.push_back(value);
 			}
 		}
 
@@ -53,43 +77,8 @@ std::pair<bool, std::vector<GLfloat>> Loader::LoadObjectVertices(const std::wstr
 		result = false;
 	}
 
-	if (vertices.empty()) result = false;
+	if (indices.empty() || vertices.empty()) result = false;
 
-	return { result, vertices };
-}
-
-std::pair<bool, std::vector<unsigned int>> Loader::ComputeIndices(const std::vector<GLfloat>& vertices)
-{
-	bool result = true;
-
-	std::map<unsigned int, GLfloat> map;
-
-	bool found = false;
-
-	for (unsigned int i = 0; i < vertices.size(); i++) {
-		found = false;
-
-		for (const auto& [key, value] : map) {
-			if (value == vertices[i]) {
-				map.insert({ key, vertices[i] });
-				found = true;
-			};
-
-			break;
-		}
-
-		if (!found) map.insert({ i, vertices[i] });
-	}
-
-	std::vector<unsigned int> indices;
-	indices.reserve(map.size());
-
-	for (const auto& [key, value] : map) {
-		indices.push_back(key);
-	}
-
-	if (indices.empty()) result = false;
-
-	return { result, indices };
+	return { result, { indices, vertices } };
 }
 

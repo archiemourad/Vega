@@ -28,26 +28,15 @@ namespace Vega
 			/// <summary>
 			/// Pass vertices and indices into the buffers.
 			/// </summary>
-			/// <param name="data"></param>
-			void DualPassIntoBuffers(const std::pair<std::vector<GLfloat>, std::vector<unsigned int>>& data);
-
-			/// <summary>
-			/// Unsafe! Pass indices directly into the index buffer.
-			/// </summary>
-			/// <param name="indices"></param>
-			void PassIndicesIntoBuffer(const std::vector<unsigned int>& indices);
-			/// <summary>
-			/// Unsafe! Pass vertices directly into the vertex buffer.
-			/// </summary>
-			/// <param name="vertices"></param>
-			void PassVerticesIntoBuffer(const std::vector<GLfloat>& vertices);
+			/// <param name="data">A success boolean (did succeed?).</param>
+			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
 		private:
 			GLFWwindow* window;
 
 			int width, height;
 
-			std::vector<unsigned int> indices{ 1 };
-			std::vector<GLfloat> vertices{ 0, 0, 0 };
+			std::vector<unsigned int> indices;
+			std::vector<glm::vec3> vertices = { glm::vec3(0, 0, 0) };
 		};
 	}
 }

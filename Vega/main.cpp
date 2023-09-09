@@ -14,9 +14,9 @@ int main()
 	Core::Window window("Vega Engine", 800, 600);
 
 	// Load our file.
-	const std::pair<std::vector<GLfloat>, std::vector<unsigned int>> data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj");
+	const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj");
 	// Pass the data into our buffers.
-	window.DualPassIntoBuffers(data);
+	window.PassBuffers(data);
 
 	// Run!
 	Helpers::Debug::Log(L"Running!");
