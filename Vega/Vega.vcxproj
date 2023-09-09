@@ -151,6 +151,7 @@
     <ClCompile Include="Compiler\Reader.cpp" />
     <ClCompile Include="Helpers\Conversion.cpp" />
     <ClCompile Include="Core\Window.cpp" />
+    <ClCompile Include="Render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Compiler\Compiler.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Compiler\Reader.h" />
     <ClInclude Include="Helpers\Conversion.h" />
     <ClInclude Include="Core\Window.h" />
+    <ClInclude Include="Render.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\fragment.glsl" />

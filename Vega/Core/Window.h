@@ -4,6 +4,7 @@
 
 #include "../Helpers/Debug.h"
 #include "../Compiler/Compiler.h"
+#include "../Render.h"
 
 namespace Vega
 {
