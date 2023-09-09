@@ -48,54 +48,54 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="Core\Window.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Debug.cpp">
+    <ClCompile Include="Helpers\Debug.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Instance.cpp">
+    <ClCompile Include="Helpers\Instance.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Reader.cpp">
+    <ClCompile Include="Compiler\Reader.cpp">
       <Filter>Source Files\Compiler</Filter>
     </ClCompile>
-    <ClCompile Include="Compiler.cpp">
+    <ClCompile Include="Compiler\Compiler.cpp">
       <Filter>Source Files\Compiler</Filter>
     </ClCompile>
-    <ClCompile Include="Conversion.cpp">
+    <ClCompile Include="Helpers\Conversion.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="Loader.cpp">
+    <ClCompile Include="Loader\Loader.cpp">
       <Filter>Source Files\Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GL.h">
+    <ClInclude Include="Dependencies\GL.h">
       <Filter>Header Files\Dependencies</Filter>
     </ClInclude>
-    <ClInclude Include="GLM.h">
+    <ClInclude Include="Dependencies\GLM.h">
       <Filter>Header Files\Dependencies</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="Core\Window.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Debug.h">
+    <ClInclude Include="Helpers\Debug.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Instance.h">
+    <ClInclude Include="Helpers\Instance.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Reader.h">
+    <ClInclude Include="Compiler\Reader.h">
       <Filter>Header Files\Compiler</Filter>
     </ClInclude>
-    <ClInclude Include="Compiler.h">
+    <ClInclude Include="Compiler\Compiler.h">
       <Filter>Header Files\Compiler</Filter>
     </ClInclude>
-    <ClInclude Include="Conversion.h">
+    <ClInclude Include="Helpers\Conversion.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Loader.h">
+    <ClInclude Include="Loader\Loader.h">
       <Filter>Header Files\Loader</Filter>
     </ClInclude>
   </ItemGroup>

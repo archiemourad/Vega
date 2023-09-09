@@ -1,5 +1,5 @@
 #pragma once
-#include "Debug.h"
+#include "../Helpers/Debug.h"
 
 #include <fstream>
 

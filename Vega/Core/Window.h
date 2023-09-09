@@ -1,9 +1,9 @@
 #pragma once
-#include "GL.h"
-#include "GLM.h"
+#include "../Dependencies/GL.h"
+#include "../Dependencies/GLM.h"
 
-#include "Debug.h"
-#include "Compiler.h"
+#include "../Helpers/Debug.h"
+#include "../Compiler/Compiler.h"
 
 namespace Vega
 {

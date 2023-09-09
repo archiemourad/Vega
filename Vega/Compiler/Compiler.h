@@ -1,8 +1,8 @@
 #pragma once
-#include "GL.h"
+#include "../Dependencies/GL.h"
 
-#include "Conversion.h"
-#include "Reader.h"
+#include "../Helpers/Conversion.h"
+#include "../Compiler/Reader.h"
 
 namespace Vega
 {

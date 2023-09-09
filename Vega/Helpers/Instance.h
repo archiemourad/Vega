@@ -1,5 +1,5 @@
 #pragma once
-#include "GL.h"
+#include "../Dependencies/GL.h"
 
 #include "Debug.h"
 

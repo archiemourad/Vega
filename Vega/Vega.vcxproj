@@ -143,25 +143,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Compiler.cpp" />
-    <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Instance.cpp" />
-    <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="Compiler\Compiler.cpp" />
+    <ClCompile Include="Helpers\Debug.cpp" />
+    <ClCompile Include="Helpers\Instance.cpp" />
+    <ClCompile Include="Loader\Loader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Reader.cpp" />
-    <ClCompile Include="Conversion.cpp" />
-    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Compiler\Reader.cpp" />
+    <ClCompile Include="Helpers\Conversion.cpp" />
+    <ClCompile Include="Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Compiler.h" />
-    <ClInclude Include="Debug.h" />
-    <ClInclude Include="GL.h" />
-    <ClInclude Include="GLM.h" />
-    <ClInclude Include="Instance.h" />
-    <ClInclude Include="Loader.h" />
-    <ClInclude Include="Reader.h" />
-    <ClInclude Include="Conversion.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Compiler\Compiler.h" />
+    <ClInclude Include="Helpers\Debug.h" />
+    <ClInclude Include="Dependencies\GL.h" />
+    <ClInclude Include="Dependencies\GLM.h" />
+    <ClInclude Include="Helpers\Instance.h" />
+    <ClInclude Include="Loader\Loader.h" />
+    <ClInclude Include="Compiler\Reader.h" />
+    <ClInclude Include="Helpers\Conversion.h" />
+    <ClInclude Include="Core\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\fragment.glsl" />
