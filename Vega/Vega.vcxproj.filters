@@ -13,90 +13,99 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Dependencies">
-      <UniqueIdentifier>{be68660c-8889-402a-a53f-d64e6741723c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core">
-      <UniqueIdentifier>{6629e383-65e0-4385-ba5b-9fad17c5e107}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Helpers">
-      <UniqueIdentifier>{2aef69b2-f6de-4ab1-8156-2e80256eae41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Core">
-      <UniqueIdentifier>{bd3e9697-2fbc-4225-94d1-508e95015730}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Helpers">
-      <UniqueIdentifier>{9869b6b2-47af-46db-8b59-5e11268a19a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Compiler">
-      <UniqueIdentifier>{e7b42204-ee47-41e8-865e-ae1132532a95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Compiler">
-      <UniqueIdentifier>{5a5bad28-d8d9-4f1f-8050-793af9c9053e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{f2f31677-aaa6-456e-a9ba-a9b68395f4f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Loader">
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{ebf6d03b-ad25-4804-834c-b3ee06b485c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Loader">
       <UniqueIdentifier>{78639bed-34ff-40a9-a7ae-9cfbf8cb36cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Loader">
+    <Filter Include="Header Files\Engine\Compiler">
+      <UniqueIdentifier>{e7b42204-ee47-41e8-865e-ae1132532a95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Core">
+      <UniqueIdentifier>{6629e383-65e0-4385-ba5b-9fad17c5e107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Dependencies">
+      <UniqueIdentifier>{be68660c-8889-402a-a53f-d64e6741723c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Helpers">
+      <UniqueIdentifier>{2aef69b2-f6de-4ab1-8156-2e80256eae41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{b39e3786-4ad0-4d8a-850f-0f1a7c1ec330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Loader">
       <UniqueIdentifier>{10e876d3-1e6f-43f9-a153-4e4e3cfb2793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Compiler">
+      <UniqueIdentifier>{5a5bad28-d8d9-4f1f-8050-793af9c9053e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Core">
+      <UniqueIdentifier>{bd3e9697-2fbc-4225-94d1-508e95015730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Helpers">
+      <UniqueIdentifier>{9869b6b2-47af-46db-8b59-5e11268a19a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Demo">
+      <UniqueIdentifier>{101ac5d0-4c42-463a-91ba-a01f41e5602f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Window.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="Helpers\Debug.cpp">
-      <Filter>Source Files\Helpers</Filter>
+      <Filter>Source Files\Engine\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Helpers\Instance.cpp">
-      <Filter>Source Files\Helpers</Filter>
+      <Filter>Source Files\Engine\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Compiler\Reader.cpp">
-      <Filter>Source Files\Compiler</Filter>
+      <Filter>Source Files\Engine\Compiler</Filter>
     </ClCompile>
     <ClCompile Include="Compiler\Compiler.cpp">
-      <Filter>Source Files\Compiler</Filter>
+      <Filter>Source Files\Engine\Compiler</Filter>
     </ClCompile>
     <ClCompile Include="Helpers\Conversion.cpp">
-      <Filter>Source Files\Helpers</Filter>
+      <Filter>Source Files\Engine\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Loader\Loader.cpp">
-      <Filter>Source Files\Loader</Filter>
+      <Filter>Source Files\Engine\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Demo\main.cpp">
+      <Filter>Source Files\Demo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\GL.h">
-      <Filter>Header Files\Dependencies</Filter>
+      <Filter>Header Files\Engine\Dependencies</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\GLM.h">
-      <Filter>Header Files\Dependencies</Filter>
+      <Filter>Header Files\Engine\Dependencies</Filter>
     </ClInclude>
     <ClInclude Include="Core\Window.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Header Files\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="Helpers\Debug.h">
-      <Filter>Header Files\Helpers</Filter>
+      <Filter>Header Files\Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Helpers\Instance.h">
-      <Filter>Header Files\Helpers</Filter>
+      <Filter>Header Files\Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Compiler\Reader.h">
-      <Filter>Header Files\Compiler</Filter>
+      <Filter>Header Files\Engine\Compiler</Filter>
     </ClInclude>
     <ClInclude Include="Compiler\Compiler.h">
-      <Filter>Header Files\Compiler</Filter>
+      <Filter>Header Files\Engine\Compiler</Filter>
     </ClInclude>
     <ClInclude Include="Helpers\Conversion.h">
-      <Filter>Header Files\Helpers</Filter>
+      <Filter>Header Files\Engine\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Loader\Loader.h">
-      <Filter>Header Files\Loader</Filter>
+      <Filter>Header Files\Engine\Loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
-#include "Helpers/Debug.h"
-#include "Helpers/Instance.h"
-#include "Core/Window.h"
-#include "Loader/Loader.h"
+#include "../Helpers/Debug.h"
+#include "../Helpers/Instance.h"
+#include "../Core/Window.h"
+#include "../Loader/Loader.h"
 
 using namespace Vega;
 

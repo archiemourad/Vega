@@ -28,7 +28,8 @@ namespace Vega
 			/// <summary>
 			/// Pass vertices and indices into the buffers.
 			/// </summary>
-			/// <param name="data">A success boolean (did succeed?).</param>
+			/// <param name="data"></param>
+			/// <returns>A success boolean (did succeed?).</returns>
 			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
 		private:
 			GLFWwindow* window;

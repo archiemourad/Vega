@@ -147,7 +147,7 @@
     <ClCompile Include="Helpers\Debug.cpp" />
     <ClCompile Include="Helpers\Instance.cpp" />
     <ClCompile Include="Loader\Loader.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Demo\main.cpp" />
     <ClCompile Include="Compiler\Reader.cpp" />
     <ClCompile Include="Helpers\Conversion.cpp" />
     <ClCompile Include="Core\Window.cpp" />
