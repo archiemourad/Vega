@@ -2,34 +2,24 @@
 
 using namespace Vega;
 
-void Render::Render(
-	GLFWwindow* window,
-	const GLuint& SP,
-	const GLuint& EBO,
-	const GLuint& VBO,
-	const std::vector<unsigned int>& indices,
-	const std::vector<glm::vec3>& vertices
-)
+void Render::Render(Core::Window* window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Setup.
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, window->GetEBO());
 
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, window->GetVBO());
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-	glUseProgram(SP);
+	glUseProgram(window->GetSP());
 
 	// Serve to shader.
-	GLuint mvpLocation = glGetUniformLocation(SP, "mvp");
+	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 
 	// Projection / View / Model
-	int width, height;
-	glfwGetWindowSize(window, &width, &height);
-
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / height, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)window->GetDimensions().first / window->GetDimensions().second, 0.1f, 100.0f);
 	glm::mat4 view = glm::lookAt(
 		glm::vec3(5, 5, -5), // Camera position in world space.
 		glm::vec3(0, 0, 0), // Looking at world origin.
@@ -43,7 +33,7 @@ void Render::Render(
 	// Draw.
 	glDrawElements(
 		GL_TRIANGLES, // Mode.
-		(GLsizei)indices.size(), // Count.
+		(GLsizei)window->GetIndices().size(), // Count.
 		GL_UNSIGNED_INT, // Type.
 		(void*)0 // Element array buffer offset.
 	);
@@ -51,7 +41,7 @@ void Render::Render(
 	// Cleanup.
 	glDisableVertexAttribArray(0);
 
-	glfwSwapBuffers(window);
+	glfwSwapBuffers(window->GetWindow());
 	glfwPollEvents();
 }
 
