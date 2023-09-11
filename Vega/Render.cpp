@@ -18,6 +18,12 @@ void Render::Render(Core::Window* window)
 	// Serve to shader.
 	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 
+	// Empty check.
+	if (window->GetCameras().empty()) {
+		window->GetCameras().push_back(Scene::Camera(L"Camera", (float)window->GetDimensions().first / window->GetDimensions().second));
+		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
+	}
+
 	glm::mat4 mvp = window->GetFirstCamera().GenerateMVP();
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 

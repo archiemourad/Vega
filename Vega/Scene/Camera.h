@@ -1,6 +1,8 @@
 #pragma once
 #include "../Dependencies/GLM.h"
 
+#include <string>
+
 namespace Vega
 {
 	namespace Scene
@@ -12,7 +14,7 @@ namespace Vega
 			/// Camera setup and initialization.
 			/// </summary>
 			/// <param name="aspect"></param>
-			Camera(float aspect) { this->aspect = aspect; }
+			Camera(std::wstring id, float aspect) { this->id = id; this->aspect = aspect; }
 
 			/// <summary>
 			/// Generates the MVP matrix.
@@ -21,6 +23,9 @@ namespace Vega
 			glm::mat4 GenerateMVP();
 
 			// Getters & Setters.
+			std::wstring GetID() { return id; }
+			void SetID(std::wstring id) { this->id = id; }
+
 			glm::mat4 GetProjection() { return projection; }
 			void SetProjection(glm::mat4 projection) { this->projection = projection; }
 
@@ -45,12 +50,18 @@ namespace Vega
 			glm::vec3 GetPos() { return pos; }
 			void SetPos(glm::vec3 pos) { this->pos = pos; }
 
+			void UpdatePos(glm::vec3 pos) { this->pos = this->pos + pos; }
+
 			glm::vec3 GetLook() { return look; }
 			void SetLook(glm::vec3 look) { this->look = look; }
+
+			void UpdateLook(glm::vec3 look) { this->look = this->look + look; }
 
 			glm::vec3 GetHead() { return head; }
 			void SetHead(glm::vec3 head) { this->head = head; }
 		private:
+			std::wstring id;
+
 			// Projection / View / Model
 			glm::mat4 projection = glm::mat4(0.0f);
 			glm::mat4 view = glm::mat4(0.0f);

@@ -50,12 +50,6 @@ void Core::Window::Run()
 	glDeleteShader(VS);
 	glDeleteShader(FS);
 
-	// Empty check.
-	if (cameras.empty()) {
-		cameras.push_back(Scene::Camera((float)width / height));
-		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
-	}
-
 	// Render.
 	do { Render::Render(this); } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
 }
@@ -70,13 +64,40 @@ bool Core::Window::PassBuffers(const std::pair<std::vector<unsigned int>, std::v
 	return true;
 }
 
-void Core::Window::AddCamera(glm::vec3 pos)
+bool Core::Window::AddCamera(std::wstring id, glm::vec3 pos, glm::vec3 look)
 {
-	Scene::Camera camera((float)width / height);
+	for (Scene::Camera camera : cameras) if (id == camera.GetID()) return false;
+
+	Scene::Camera camera(id, (float)width / height);
 
 	// Properties.
 	camera.SetPos(pos);
+	camera.SetLook(look);
 
 	cameras.push_back(camera);
+
+	return true;
+}
+
+bool Core::Window::RemoveCamera(std::wstring id)
+{
+	for (unsigned int i = 0; i < cameras.size(); i++)
+		if (id == cameras[i].GetID()) {
+			cameras.erase(cameras.begin() + i);
+			return true;
+		}
+
+	return false;
+}
+
+bool Core::Window::PromoteCamera(std::wstring id)
+{
+	for (unsigned int i = 0; i < cameras.size(); i++)
+		if (id == cameras[i].GetID()) {
+			std::rotate(cameras.begin(), cameras.begin() + i, cameras.end());
+			return true;
+		}
+
+	return false;
 }
 
