@@ -52,6 +52,12 @@
     <Filter Include="Source Files\Demo">
       <UniqueIdentifier>{101ac5d0-4c42-463a-91ba-a01f41e5602f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Scene">
+      <UniqueIdentifier>{187fec7b-2a80-4713-8409-87f62c9ff9e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Scene">
+      <UniqueIdentifier>{36b10595-39f5-4d92-8b8b-570656beb759}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp">
@@ -80,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="Render.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Camera.cpp">
+      <Filter>Source Files\Engine\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Render.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Camera.h">
+      <Filter>Header Files\Engine\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

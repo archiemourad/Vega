@@ -15,6 +15,8 @@ int main()
 	const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj");
 	window.PassBuffers(data); // Pass the data into our buffers.
 
+	window.AddCamera(glm::vec3(5.0f, 5.0f, -5.0f)); // Add our camera to the scene.
+
 	Helpers::Debug::Log(L"Running!"); // Run!
 
 	window.Run();

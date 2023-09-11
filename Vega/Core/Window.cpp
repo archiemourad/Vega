@@ -50,6 +50,12 @@ void Core::Window::Run()
 	glDeleteShader(VS);
 	glDeleteShader(FS);
 
+	// Empty check.
+	if (cameras.empty()) {
+		cameras.push_back(Scene::Camera((float)width / height));
+		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
+	}
+
 	// Render.
 	do { Render::Render(this); } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
 }
@@ -62,5 +68,15 @@ bool Core::Window::PassBuffers(const std::pair<std::vector<unsigned int>, std::v
 	vertices.insert(vertices.end(), data.second.begin(), data.second.end());
 
 	return true;
+}
+
+void Core::Window::AddCamera(glm::vec3 pos)
+{
+	Scene::Camera camera((float)width / height);
+
+	// Properties.
+	camera.SetPos(pos);
+
+	cameras.push_back(camera);
 }
 

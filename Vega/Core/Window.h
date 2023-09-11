@@ -4,6 +4,7 @@
 
 #include "../Helpers/Debug.h"
 #include "../Compiler/Compiler.h"
+#include "../Scene/Camera.h"
 #include "../Render.h"
 
 namespace Vega
@@ -34,6 +35,18 @@ namespace Vega
 			/// <returns>A success boolean (did succeed?).</returns>
 			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
 
+			/// <summary>
+			/// Add a camera to the scene.
+			/// </summary>
+			/// <param name="pos"></param>
+			void AddCamera(glm::vec3 pos = glm::vec3(0, 0, 0));
+
+			/// <summary>
+			/// Get the first camera.
+			/// </summary>
+			/// <returns></returns>
+			Scene::Camera GetFirstCamera() { return cameras.front(); }
+
 			// Getters & Setters.
 			GLFWwindow* GetWindow() { return window; }
 			void SetWindow(GLFWwindow* window) { this->window = window; }
@@ -58,6 +71,9 @@ namespace Vega
 
 			std::vector<glm::vec3> GetVertices() { return this->vertices; }
 			void SetVertices(std::vector<glm::vec3> vertices) { this->vertices = vertices; }
+
+			std::vector<Scene::Camera> GetCameras() { return cameras; }
+			void SetCameras(std::vector<Scene::Camera> cameras) { this->cameras = cameras; }
 		private:
 			GLFWwindow* window;
 
@@ -73,6 +89,8 @@ namespace Vega
 			// Buffers.
 			std::vector<unsigned int> indices;
 			std::vector<glm::vec3> vertices = { glm::vec3(0, 0, 0) };
+
+			std::vector<Scene::Camera> cameras; // Camera buffer.
 		};
 	}
 }

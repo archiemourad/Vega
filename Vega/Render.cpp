@@ -18,16 +18,7 @@ void Render::Render(Core::Window* window)
 	// Serve to shader.
 	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 
-	// Projection / View / Model
-	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)window->GetDimensions().first / window->GetDimensions().second, 0.1f, 100.0f);
-	glm::mat4 view = glm::lookAt(
-		glm::vec3(5, 5, -5), // Camera position in world space.
-		glm::vec3(0, 0, 0), // Looking at world origin.
-		glm::vec3(0, 1, 0) // Head is up ((0, -1, 0) to look upside down).
-	);
-	glm::mat4 model = glm::mat4(1.0f);
-
-	glm::mat4 mvp = projection * view * model;
+	glm::mat4 mvp = window->GetFirstCamera().GenerateMVP();
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 
 	// Draw.
