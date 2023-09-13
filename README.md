@@ -1,5 +1,12 @@
 # Vega
+[![GitHub license](https://img.shields.io/github/license/archiemourad/Vega.svg)](https://github.com/archiemourad/Vega/blob/stable/LICENSE)
+
 An OpenGL rendering/development engine.
+
+# Dependencies
+- [GLEW](https://glew.sourceforge.net/): Provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform.
+- [GLFW](https://www.glfw.org/): Provides a simple API for creating windows, contexts and surfaces, receiving input and events.
+- [glm](https://github.com/g-truc/glm): A header only C++ mathematics library for graphics software.
 
 # License
 MIT License
