@@ -20,11 +20,11 @@ void Render::Render(Core::Window* window)
 
 	// Empty check.
 	if (window->GetCameras().empty()) {
-		window->GetCameras().push_back(Scene::Camera(L"Camera", (float)window->GetDimensions().first / window->GetDimensions().second));
+		window->PublishCamera(window->CreateCamera()); // No need to keep track here.
 		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
 	}
 
-	glm::mat4 mvp = window->GetFirstCamera().GenerateMVP();
+	glm::mat4 mvp = window->GetCameras().front()->GenerateMVP();
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 
 	// Draw.

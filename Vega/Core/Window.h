@@ -36,30 +36,23 @@ namespace Vega
 			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
 
 			/// <summary>
-			/// Adds a camera to the scene.
+			/// Creates a scene camera.
 			/// </summary>
-			/// <param name="id"></param>
 			/// <param name="pos"></param>
 			/// <param name="look"></param>
-			/// <returns>A success boolean (did succeed?).</returns>
-			bool AddCamera(std::wstring id, glm::vec3 pos = glm::vec3(0, 0, 0), glm::vec3 look = glm::vec3(0, 0, 0));
-			/// <summary>
-			/// Remove a camera from the scene.
-			/// </summary>
-			/// <param name="id"></param>
-			/// <returns>A success boolean (did succeed?).</returns>
-			bool RemoveCamera(std::wstring id);
-			/// <summary>
-			/// Makes the camera the main camera.
-			/// </summary>
-			/// <param name="id"></param>
-			bool PromoteCamera(std::wstring id);
-
-			/// <summary>
-			/// Get the first camera.
-			/// </summary>
 			/// <returns></returns>
-			Scene::Camera& GetFirstCamera() { return cameras.front(); }
+			Scene::Camera CreateCamera(glm::vec3 pos = glm::vec3(0, 0, 0), glm::vec3 look = glm::vec3(0, 0, 0));
+			/// <summary>
+			/// Publishes a camera to the scene.
+			/// </summary>
+			/// <param name="camera"></param>
+			/// <returns></returns>
+			std::shared_ptr<Scene::Camera> PublishCamera(Scene::Camera camera);
+			/// <summary>
+			/// Removes a camera from the scene (by pointer).
+			/// </summary>
+			/// <param name="ptr"></param>
+			void RemoveCamera(std::shared_ptr<Scene::Camera> ptr);
 
 			// Getters & Setters.
 			GLFWwindow* GetWindow() { return window; }
@@ -86,8 +79,8 @@ namespace Vega
 			std::vector<glm::vec3>& GetVertices() { return this->vertices; }
 			void SetVertices(std::vector<glm::vec3> vertices) { this->vertices = vertices; }
 
-			std::vector<Scene::Camera>& GetCameras() { return cameras; }
-			void SetCameras(std::vector<Scene::Camera> cameras) { this->cameras = cameras; }
+			std::vector<std::shared_ptr<Scene::Camera>>& GetCameras() { return cameras; }
+			void SetCameras(std::vector<std::shared_ptr<Scene::Camera>> cameras) { this->cameras = cameras; }
 		private:
 			GLFWwindow* window;
 
@@ -104,7 +97,7 @@ namespace Vega
 			std::vector<unsigned int> indices;
 			std::vector<glm::vec3> vertices = { glm::vec3(0, 0, 0) };
 
-			std::vector<Scene::Camera> cameras; // Camera buffer.
+			std::vector<std::shared_ptr<Scene::Camera>> cameras; // Camera buffer.
 		};
 	}
 }

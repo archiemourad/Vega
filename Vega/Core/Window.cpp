@@ -64,40 +64,35 @@ bool Core::Window::PassBuffers(const std::pair<std::vector<unsigned int>, std::v
 	return true;
 }
 
-bool Core::Window::AddCamera(std::wstring id, glm::vec3 pos, glm::vec3 look)
+Scene::Camera Core::Window::CreateCamera(glm::vec3 pos, glm::vec3 look)
 {
-	for (Scene::Camera camera : cameras) if (id == camera.GetID()) return false;
-
-	Scene::Camera camera(id, (float)width / height);
+	Scene::Camera camera((float)width / height);
 
 	// Properties.
 	camera.SetPos(pos);
 	camera.SetLook(look);
 
-	cameras.push_back(camera);
-
-	return true;
+	return camera;
 }
 
-bool Core::Window::RemoveCamera(std::wstring id)
+std::shared_ptr<Scene::Camera> Core::Window::PublishCamera(Scene::Camera camera)
 {
-	for (unsigned int i = 0; i < cameras.size(); i++)
-		if (id == cameras[i].GetID()) {
-			cameras.erase(cameras.begin() + i);
-			return true;
-		}
+	std::shared_ptr<Scene::Camera> ptr = std::make_shared<Scene::Camera>(camera);
 
-	return false;
+	cameras.push_back(ptr);
+
+	return ptr;
 }
 
-bool Core::Window::PromoteCamera(std::wstring id)
+void Core::Window::RemoveCamera(std::shared_ptr<Scene::Camera> ptr)
 {
-	for (unsigned int i = 0; i < cameras.size(); i++)
-		if (id == cameras[i].GetID()) {
-			std::rotate(cameras.begin(), cameras.begin() + i, cameras.end());
-			return true;
-		}
-
-	return false;
+	cameras.erase(
+		std::remove_if(
+			cameras.begin(),
+			cameras.end(),
+			[ptr](std::shared_ptr<Scene::Camera> lptr) { return (ptr == lptr); }
+		),
+		cameras.end()
+	);
 }
 

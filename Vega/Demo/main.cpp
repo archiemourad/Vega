@@ -9,18 +9,18 @@ int main()
 {
 	Helpers::Instance::Setup(); // Setup.
 
-	Core::Window window("Vega Engine", 800, 600); // New window.
+	Core::Window _window("Vega Engine", 800, 600); // New window.
+	Core::Window* window = &_window;
 
-	// Load our file.
-	const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj");
-	window.PassBuffers(data); // Pass the data into our buffers.
+	const auto data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj"); // Load our file.
+	window->PassBuffers(data); // Pass the data into our buffers.
 
-	window.AddCamera(L"Orbit Camera", glm::vec3(5.0f, 5.0f, -5.0f)); // Add our camera to the scene.
-	window.PromoteCamera(L"Orbit Camera"); // Unneeded, but good practice.
+	// Create our camera.
+	std::shared_ptr<Scene::Camera> camera = window->PublishCamera(window->CreateCamera(glm::vec3(5.0f, 5.0f, -5.0f)));
 
 	Helpers::Debug::Log(L"Running!"); // Run!
 
-	window.Run();
+	window->Run();
 
 	Helpers::Instance::Cleanup(); // Cleanup.
 }
