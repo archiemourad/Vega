@@ -12,11 +12,11 @@ int main()
 	Core::Window _window("Vega Engine", 800, 600); // New window.
 	Core::Window* window = &_window;
 
-	const auto data = Loader::LoadObjectFile(L"Assets/Objects/suzanne.obj"); // Load our file.
+	const auto data = Loader::LoadObjectFile(L"Assets/Objects/craneo.obj"); // Load our file.
 	window->PassBuffers(data); // Pass the data into our buffers.
 
 	// Create our camera.
-	std::shared_ptr<Scene::Camera> camera = window->PublishCamera(window->CreateCamera(glm::vec3(5.0f, 5.0f, -5.0f)));
+	std::shared_ptr<Scene::Camera> camera = window->PublishCamera(window->CreateCamera(glm::vec3(5.0f, 0.0f, 5.0f)));
 
 	Helpers::Debug::Log(L"Running!"); // Run!
 
