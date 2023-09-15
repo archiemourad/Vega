@@ -8,6 +8,9 @@ An OpenGL rendering/development engine.
 - [GLFW](https://www.glfw.org/): Provides a simple API for creating windows, contexts and surfaces, receiving input and events.
 - [glm](https://github.com/g-truc/glm): A header only C++ mathematics library for graphics software.
 
+# Credits
+Demo model by [Martín Jario](https://www.artstation.com/martinjario) (retrieved from [Sketchfab](https://sketchfab.com/3d-models/skull-downloadable-1a9db900738d44298b0bc59f68123393) under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)).
+
 # License
 MIT License
 
