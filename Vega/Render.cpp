@@ -18,13 +18,16 @@ void Render::Render(Core::Window* window)
 	// Serve to shader.
 	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 
-	// Empty check.
-	if (window->GetCameras().empty()) {
-		window->PublishCamera(window->CreateCamera()); // No need to keep track here.
+	if (window->GetScene().GetCameras().GetMembers().empty()) {
+		// No need to keep track here.
+		window->GetScene().GetCameras().AddMember(
+			Scene::Actors::Camera((float)window->GetDimensions().first / window->GetDimensions().second)
+		);
+
 		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
 	}
 
-	glm::mat4 mvp = window->GetCameras().front()->GenerateMVP();
+	glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->GenerateMVP();
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
 
 	// Draw.

@@ -4,7 +4,7 @@
 
 #include "../Helpers/Debug.h"
 #include "../Compiler/Compiler.h"
-#include "../Scene/Camera.h"
+#include "../Scene/Scene.h"
 #include "../Render.h"
 
 namespace Vega
@@ -35,26 +35,8 @@ namespace Vega
 			/// <returns>A success boolean (did succeed?).</returns>
 			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
 
-			/// <summary>
-			/// Creates a scene camera.
-			/// </summary>
-			/// <param name="pos"></param>
-			/// <param name="look"></param>
-			/// <returns></returns>
-			Scene::Camera CreateCamera(glm::vec3 pos = glm::vec3(0, 0, 0), glm::vec3 look = glm::vec3(0, 0, 0));
-			/// <summary>
-			/// Publishes a camera to the scene.
-			/// </summary>
-			/// <param name="camera"></param>
-			/// <returns></returns>
-			std::shared_ptr<Scene::Camera> PublishCamera(Scene::Camera camera);
-			/// <summary>
-			/// Removes a camera from the scene (by pointer).
-			/// </summary>
-			/// <param name="ptr"></param>
-			void RemoveCamera(std::shared_ptr<Scene::Camera> ptr);
-
 			// Getters & Setters.
+
 			GLFWwindow* GetWindow() { return window; }
 			void SetWindow(GLFWwindow* window) { this->window = window; }
 
@@ -79,14 +61,16 @@ namespace Vega
 			std::vector<glm::vec3>& GetVertices() { return this->vertices; }
 			void SetVertices(std::vector<glm::vec3> vertices) { this->vertices = vertices; }
 
-			std::vector<std::shared_ptr<Scene::Camera>>& GetCameras() { return cameras; }
-			void SetCameras(std::vector<std::shared_ptr<Scene::Camera>> cameras) { this->cameras = cameras; }
+			Scene::Scene& GetScene() { return scene; }
+			void SetScene(Scene::Scene scene) { this->scene = scene; }
+
 		private:
 			GLFWwindow* window;
 
 			int width, height;
 
 			// Buffer objects.
+
 			GLuint VAO;
 			GLuint EBO;
 			GLuint VBO;
@@ -94,10 +78,13 @@ namespace Vega
 			GLuint SP; // Shader program.
 
 			// Buffers.
-			std::vector<unsigned int> indices;
-			std::vector<glm::vec3> vertices = { glm::vec3(0, 0, 0) };
 
-			std::vector<std::shared_ptr<Scene::Camera>> cameras; // Camera buffer.
+			std::vector<unsigned int> indices;
+			std::vector<glm::vec3> vertices = { glm::vec3(0.f, 0.f, 0.f) };
+
+			// Scene.
+			Scene::Scene scene;
+
 		};
 	}
 }

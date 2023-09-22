@@ -58,6 +58,15 @@
     <Filter Include="Source Files\Engine\Scene">
       <UniqueIdentifier>{36b10595-39f5-4d92-8b8b-570656beb759}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Util">
+      <UniqueIdentifier>{c269eeaf-3c30-4641-85ba-454e16ee7d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Scene\Actors">
+      <UniqueIdentifier>{e65f3717-d07f-4572-a329-a0a0ce7b9af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Scene\Actors">
+      <UniqueIdentifier>{eeb92133-1b8a-417e-8145-77d0174bd1e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp">
@@ -87,8 +96,8 @@
     <ClCompile Include="Render.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Camera.cpp">
-      <Filter>Source Files\Engine\Scene</Filter>
+    <ClCompile Include="Scene\Actors\Camera.cpp">
+      <Filter>Source Files\Engine\Scene\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +131,13 @@
     <ClInclude Include="Render.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Camera.h">
+    <ClInclude Include="Util\Cast.h">
+      <Filter>Header Files\Engine\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Actors\Camera.h">
+      <Filter>Header Files\Engine\Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
       <Filter>Header Files\Engine\Scene</Filter>
     </ClInclude>
   </ItemGroup>

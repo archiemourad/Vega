@@ -64,35 +64,3 @@ bool Core::Window::PassBuffers(const std::pair<std::vector<unsigned int>, std::v
 	return true;
 }
 
-Scene::Camera Core::Window::CreateCamera(glm::vec3 pos, glm::vec3 look)
-{
-	Scene::Camera camera((float)width / height);
-
-	// Properties.
-	camera.SetPos(pos);
-	camera.SetLook(look);
-
-	return camera;
-}
-
-std::shared_ptr<Scene::Camera> Core::Window::PublishCamera(Scene::Camera camera)
-{
-	std::shared_ptr<Scene::Camera> ptr = std::make_shared<Scene::Camera>(camera);
-
-	cameras.push_back(ptr);
-
-	return ptr;
-}
-
-void Core::Window::RemoveCamera(std::shared_ptr<Scene::Camera> ptr)
-{
-	cameras.erase(
-		std::remove_if(
-			cameras.begin(),
-			cameras.end(),
-			[ptr](std::shared_ptr<Scene::Camera> lptr) { return (ptr == lptr); }
-		),
-		cameras.end()
-	);
-}
-

@@ -2,6 +2,7 @@
 #include "../Helpers/Instance.h"
 #include "../Core/Window.h"
 #include "../Loader/Loader.h"
+#include "../Scene/Actors/Camera.h"
 
 using namespace Vega;
 
@@ -16,7 +17,11 @@ int main()
 	window->PassBuffers(data); // Pass the data into our buffers.
 
 	// Create our camera.
-	std::shared_ptr<Scene::Camera> camera = window->PublishCamera(window->CreateCamera(glm::vec3(5.0f, 0.0f, 5.0f)));
+	const auto camera = window->GetScene().GetCameras().AddMember(
+		Scene::Actors::Camera((float)window->GetDimensions().first / window->GetDimensions().second)
+	);
+
+	camera->SetPos(glm::vec3(5.f, 0.f, 5.f)); // Configure our camera.
 
 	Helpers::Debug::Log(L"Running!"); // Run!
 

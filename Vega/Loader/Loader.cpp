@@ -18,7 +18,7 @@ std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> Loader::LoadObjectF
 	if (!result) {
 		Helpers::Debug::Log(L"Warning! Fallback. Object loading failed.");
 
-		return { std::vector<unsigned int>{ 0 }, std::vector<glm::vec3>{ glm::vec3(0, 0, 0) } };
+		return { std::vector<unsigned int>{ 0 }, std::vector<glm::vec3>{ glm::vec3(0.f, 0.f, 0.f) } };
 	}
 
 	return { data.second.first, data.second.second };

@@ -152,10 +152,12 @@
     <ClCompile Include="Helpers\Conversion.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Render.cpp" />
-    <ClCompile Include="Scene\Camera.cpp" />
+    <ClCompile Include="Scene\Actors\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene\Camera.h" />
+    <ClInclude Include="Util\Cast.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\Actors\Camera.h" />
     <ClInclude Include="Compiler\Compiler.h" />
     <ClInclude Include="Helpers\Debug.h" />
     <ClInclude Include="Dependencies\GL.h" />
