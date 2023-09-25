@@ -26,14 +26,7 @@ namespace Vega
 			/// <summary>
 			/// Begins the rendering process.
 			/// </summary>
-			void Run();
-
-			/// <summary>
-			/// Pass vertices and indices into the buffers.
-			/// </summary>
-			/// <param name="data"></param>
-			/// <returns>A success boolean (did succeed?).</returns>
-			bool PassBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
+			void Start();
 
 			// Getters & Setters.
 
@@ -43,23 +36,8 @@ namespace Vega
 			std::pair<int, int> GetDimensions() { return { width, height }; }
 			void SetDimensions(int width, int height) { this->width = width; this->height = height; }
 
-			GLuint& GetVAO() { return VAO; }
-			void SetVAO(GLuint VAO) { this->VAO = VAO; }
-
-			GLuint& GetEBO() { return EBO; }
-			void SetEBO(GLuint EBO) { this->EBO = EBO; }
-
-			GLuint& GetVBO() { return VBO; }
-			void SetVBO(GLuint VBO) { this->VBO = VBO; }
-
 			GLuint& GetSP() { return SP; }
 			void SetSP(GLuint SP) { this->SP = SP; }
-
-			std::vector<unsigned int>& GetIndices() { return this->indices; }
-			void SetIndices(std::vector<unsigned int> indices) { this->indices = indices; }
-
-			std::vector<glm::vec3>& GetVertices() { return this->vertices; }
-			void SetVertices(std::vector<glm::vec3> vertices) { this->vertices = vertices; }
 
 			Scene::Scene& GetScene() { return scene; }
 			void SetScene(Scene::Scene scene) { this->scene = scene; }
@@ -69,21 +47,9 @@ namespace Vega
 
 			int width, height;
 
-			// Buffer objects.
-
-			GLuint VAO;
-			GLuint EBO;
-			GLuint VBO;
-
 			GLuint SP; // Shader program.
 
-			// Buffers.
-
-			std::vector<unsigned int> indices;
-			std::vector<glm::vec3> vertices = { glm::vec3(0.f, 0.f, 0.f) };
-
-			// Scene.
-			Scene::Scene scene;
+			Scene::Scene scene; // Scene.
 
 		};
 	}

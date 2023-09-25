@@ -3,9 +3,12 @@
 #include "Dependencies/GLM.h"
 
 #include "Core/Window.h"
+
 #include "Scene/Actors/Camera.h"
+#include "Scene/Actors/Object.h"
 
 #include <vector>
+#include <memory>
 
 namespace Vega
 {
@@ -17,7 +20,7 @@ namespace Vega
 		/// Renders the scene.
 		/// </summary>
 		/// <param name="window"></param>
-		void Render(Core::Window* window);
+		void Draw(Core::Window* window);
 	}
 }
 

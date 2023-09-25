@@ -153,8 +153,11 @@
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Scene\Actors\Camera.cpp" />
+    <ClCompile Include="Scene\Actors\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\Actors\Object.h" />
+    <ClInclude Include="Scene\Actor.h" />
     <ClInclude Include="Util\Cast.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\Actors\Camera.h" />

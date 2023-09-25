@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Dependencies/GLM.h"
 
+#include "../Actor.h"
+
 #include <string>
 
 namespace Vega
@@ -9,7 +11,7 @@ namespace Vega
 	{
 		namespace Actors
 		{
-			class Camera
+			class Camera : public Actor
 			{
 			public:
 				/// <summary>
@@ -47,11 +49,6 @@ namespace Vega
 				float GetFPlane() { return fplane; }
 				void SetFPlane(float fplane) { this->fplane = fplane; }
 
-				glm::vec3 GetPos() { return pos; }
-				void SetPos(glm::vec3 pos) { this->pos = pos; }
-
-				void UpdatePos(glm::vec3 pos) { this->pos = this->pos + pos; }
-
 				glm::vec3 GetLook() { return look; }
 				void SetLook(glm::vec3 look) { this->look = look; }
 
@@ -76,7 +73,6 @@ namespace Vega
 
 				// View.
 
-				glm::vec3 pos = glm::vec3(0.f, 0.f, 0.f);
 				glm::vec3 look = glm::vec3(0.f, 0.f, 0.f);
 				glm::vec3 head = glm::vec3(0.f, 1.f, 0.f); // Head is up.
 
