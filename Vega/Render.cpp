@@ -8,7 +8,9 @@ void Render::Draw(Core::Window* window)
 
 	glUseProgram(window->GetSP());
 
-	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp"); // Prior.
+	// Get locations prior.
+	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
+	GLuint modelLocation = glGetUniformLocation(window->GetSP(), "model");
 
 	if (window->GetScene().GetCameras().GetMembers().empty()) {
 		// No need to keep track here.
@@ -27,8 +29,11 @@ void Render::Draw(Core::Window* window)
 		glBindBuffer(GL_ARRAY_BUFFER, object->GetVBO());
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-		glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->GenerateMVP();
-		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvp[0][0]);
+		glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->ComputeMVP();
+		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, glm::value_ptr(mvp));
+
+		glm::mat4 model = object->ComputeModel();
+		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
 
 		// Draw.
 		glDrawElements(

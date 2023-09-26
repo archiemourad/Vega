@@ -15,17 +15,17 @@ int main()
 	Core::Window _window("Vega Engine", 800, 600); // New window.
 	Core::Window* window = &_window;
 
-	// Create our objects.
+	// Create/Load/Configure our objects.
 	const auto craneo = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
-	const auto floor = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
-
-	// Load our files.
 	const auto craneoData = Loader::LoadObjectFile(L"Assets/Objects/craneo.obj");
-	const auto floorData = Loader::LoadObjectFile(L"Assets/Objects/floor.obj");
-
-	// Push the data into our objects.
 	craneo->UpdateBuffers(craneoData);
+
+	const auto floor = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
+	const auto floorData = Loader::LoadObjectFile(L"Assets/Objects/floor.obj");
 	floor->UpdateBuffers(floorData);
+
+	floor->SetPos(glm::vec3(0.f, -5.f, 0.f)); // Position floor below craneo.
+	floor->SetAngle(45.f); // Rotate floor to face the camera.
 
 	// Create our camera.
 	const auto camera = window->GetScene().GetCameras().AddMember(

@@ -21,10 +21,10 @@ namespace Vega
 				Camera(float aspect) { this->aspect = aspect; }
 
 				/// <summary>
-				/// Generates the MVP matrix.
+				/// Computes the MVP matrix.
 				/// </summary>
-				/// <returns>The generated MVP matrix.</returns>
-				glm::mat4 GenerateMVP();
+				/// <returns>The computed MVP matrix.</returns>
+				glm::mat4 ComputeMVP();
 
 				// Getters & Setters.
 
@@ -33,9 +33,6 @@ namespace Vega
 
 				glm::mat4 GetView() { return view; }
 				void SetView(glm::mat4 view) { this->view = view; }
-
-				glm::mat4 GetModel() { return model; }
-				void SetModel(glm::mat4 model) { this->model = model; }
 
 				float GetFov() { return fov; }
 				void SetFov(float fov) { this->fov = fov; }
@@ -62,7 +59,6 @@ namespace Vega
 
 				glm::mat4 projection = glm::mat4(0.f);
 				glm::mat4 view = glm::mat4(0.f);
-				glm::mat4 model = glm::mat4(1.f);
 
 				// Projection.
 

@@ -152,6 +152,7 @@
     <ClCompile Include="Helpers\Conversion.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Scene\Actor.cpp" />
     <ClCompile Include="Scene\Actors\Camera.cpp" />
     <ClCompile Include="Scene\Actors\Object.cpp" />
   </ItemGroup>
