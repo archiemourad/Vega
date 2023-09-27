@@ -39,7 +39,14 @@ void Core::Window::Start()
 	glDeleteShader(VS);
 	glDeleteShader(FS);
 
+	// Callback.
+	StartCallback(this);
+
 	// Render.
-	do { Render::Draw(this); } while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
+	do {
+		renderer->Draw(this);
+
+		RenderCallback(this); // Callback.
+	} while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
 }
 

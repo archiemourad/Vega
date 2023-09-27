@@ -151,7 +151,7 @@
     <ClCompile Include="Compiler\Reader.cpp" />
     <ClCompile Include="Helpers\Conversion.cpp" />
     <ClCompile Include="Core\Window.cpp" />
-    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene\Actor.cpp" />
     <ClCompile Include="Scene\Actors\Camera.cpp" />
     <ClCompile Include="Scene\Actors\Object.cpp" />
@@ -171,7 +171,7 @@
     <ClInclude Include="Compiler\Reader.h" />
     <ClInclude Include="Helpers\Conversion.h" />
     <ClInclude Include="Core\Window.h" />
-    <ClInclude Include="Render.h" />
+    <ClInclude Include="Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\fragment.glsl" />

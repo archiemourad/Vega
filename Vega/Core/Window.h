@@ -5,10 +5,15 @@
 #include "../Helpers/Debug.h"
 #include "../Compiler/Compiler.h"
 #include "../Scene/Scene.h"
-#include "../Render.h"
+#include "../Renderer.h"
+
+#include <memory>
+#include <functional>
 
 namespace Vega
 {
+	namespace Render { class Renderer; }
+
 	namespace Core
 	{
 		class Window
@@ -39,17 +44,34 @@ namespace Vega
 			GLuint& GetSP() { return SP; }
 			void SetSP(GLuint SP) { this->SP = SP; }
 
+			std::unique_ptr<Render::Renderer>& GetRenderer() { return renderer; }
+			void SetRenderer(std::unique_ptr<Render::Renderer> renderer) { this->renderer = std::move(renderer); }
+
 			Scene::Scene& GetScene() { return scene; }
 			void SetScene(Scene::Scene scene) { this->scene = scene; }
+
+			std::function<void(Core::Window* window)> GetStartCallback() { return StartCallback; }
+			void SetStartCallback(std::function<void(Core::Window* window)> StartCallback) { this->StartCallback = StartCallback; }
+
+			std::function<void(Core::Window* window)> GetRenderCallback() { return RenderCallback; }
+			void SetRenderCallback(std::function<void(Core::Window* window)> RenderCallback) { this->RenderCallback = RenderCallback; }
 
 		private:
 			GLFWwindow* window;
 
 			int width, height;
 
-			GLuint SP; // Shader program.
+			GLuint SP = 0; // Shader program.
+
+			// Renderer.
+			std::unique_ptr<Render::Renderer> renderer = std::make_unique<Render::Renderer>();
 
 			Scene::Scene scene; // Scene.
+
+			// Callbacks.
+
+			std::function<void(Core::Window* window)> StartCallback = [](Core::Window* window) {};
+			std::function<void(Core::Window* window)> RenderCallback = [](Core::Window* window) {};
 
 		};
 	}

@@ -6,14 +6,16 @@
 #include "../Scene/Actors/Camera.h"
 #include "../Scene/Actors/Object.h"
 
+#include <memory>
+
 using namespace Vega;
 
 int main()
 {
 	Helpers::Instance::Setup(); // Setup.
 
-	Core::Window _window("Vega Engine", 800, 600); // New window.
-	Core::Window* window = &_window;
+	// New window.
+	std::unique_ptr<Core::Window> window = std::make_unique<Core::Window>("Vega Engine", 800, 600);
 
 	// Create/Load/Configure our objects.
 	const auto craneo = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());

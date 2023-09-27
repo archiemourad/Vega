@@ -93,7 +93,7 @@
     <ClCompile Include="Demo\main.cpp">
       <Filter>Source Files\Demo</Filter>
     </ClCompile>
-    <ClCompile Include="Render.cpp">
+    <ClCompile Include="Renderer.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Actors\Camera.cpp">
@@ -134,7 +134,7 @@
     <ClInclude Include="Loader\Loader.h">
       <Filter>Header Files\Engine\Loader</Filter>
     </ClInclude>
-    <ClInclude Include="Render.h">
+    <ClInclude Include="Renderer.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Util\Cast.h">

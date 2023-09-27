@@ -11,8 +11,5 @@ void Helpers::Instance::Setup()
 	}
 }
 
-void Helpers::Instance::Cleanup()
-{
-	glfwTerminate();
-}
+void Helpers::Instance::Cleanup() { glfwTerminate(); }
 

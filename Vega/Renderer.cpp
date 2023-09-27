@@ -1,8 +1,8 @@
-#include "Render.h"
+#include "Renderer.h"
 
 using namespace Vega;
 
-void Render::Draw(Core::Window* window)
+void Render::Renderer::Draw(Core::Window* window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -35,6 +35,9 @@ void Render::Draw(Core::Window* window)
 		glm::mat4 model = object->ComputeModel();
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
 
+		// Callback.
+		PreRenderCallback(window);
+
 		// Draw.
 		glDrawElements(
 			GL_TRIANGLES, // Mode.
@@ -42,6 +45,9 @@ void Render::Draw(Core::Window* window)
 			GL_UNSIGNED_INT, // Type.
 			(void*)0 // Element array buffer offset.
 		);
+
+		// Callback.
+		PostRenderCallback(window);
 
 		// Cleanup.
 		glDisableVertexAttribArray(0);
