@@ -5,7 +5,7 @@
 #include "../Helpers/Debug.h"
 #include "../Compiler/Compiler.h"
 #include "../Scene/Scene.h"
-#include "../Renderer.h"
+#include "../Render/Renderer.h"
 
 #include <memory>
 #include <functional>

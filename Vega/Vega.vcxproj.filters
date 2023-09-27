@@ -67,6 +67,12 @@
     <Filter Include="Source Files\Engine\Scene\Actors">
       <UniqueIdentifier>{eeb92133-1b8a-417e-8145-77d0174bd1e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Render">
+      <UniqueIdentifier>{d069cc0f-b68d-4582-abc7-5de35a87cd0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Render">
+      <UniqueIdentifier>{67abbe46-6bb4-43fc-a735-ebcb26d3b566}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp">
@@ -93,9 +99,6 @@
     <ClCompile Include="Demo\main.cpp">
       <Filter>Source Files\Demo</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Actors\Camera.cpp">
       <Filter>Source Files\Engine\Scene\Actors</Filter>
     </ClCompile>
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Actor.cpp">
       <Filter>Source Files\Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Renderer.cpp">
+      <Filter>Source Files\Engine\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +140,6 @@
     <ClInclude Include="Loader\Loader.h">
       <Filter>Header Files\Engine\Loader</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Util\Cast.h">
       <Filter>Header Files\Engine\Util</Filter>
     </ClInclude>
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Scene\Actors\Object.h">
       <Filter>Header Files\Engine\Scene\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Renderer.h">
+      <Filter>Header Files\Engine\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

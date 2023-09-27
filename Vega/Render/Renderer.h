@@ -1,11 +1,11 @@
 #pragma once
-#include "Dependencies/GL.h"
-#include "Dependencies/GLM.h"
+#include "../Dependencies/GL.h"
+#include "../Dependencies/GLM.h"
 
-#include "Core/Window.h"
+#include "../Core/Window.h"
 
-#include "Scene/Actors/Camera.h"
-#include "Scene/Actors/Object.h"
+#include "../Scene/Actors/Camera.h"
+#include "../Scene/Actors/Object.h"
 
 #include <vector>
 #include <memory>
