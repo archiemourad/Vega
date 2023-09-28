@@ -3,6 +3,7 @@
 
 #include "../Actor.h"
 #include "../../Misc/Vertex/Vertex.h"
+#include "../../Misc/Texture/Texture.h"
 
 #include <vector>
 
@@ -44,6 +45,9 @@ namespace Vega
 				std::vector<Misc::Vertex::Vertex>& GetVertices() { return vertices; }
 				void SetVertices(std::vector<Misc::Vertex::Vertex> vertices) { this->vertices = vertices; }
 
+				Misc::Texture::Texture& GetTexture() { return texture; }
+				void SetTexture(Misc::Texture::Texture texture) { this->texture = texture; }
+
 			private:
 				// Objects.
 
@@ -55,6 +59,8 @@ namespace Vega
 
 				std::vector<unsigned int> indices;
 				std::vector<Misc::Vertex::Vertex> vertices = { {glm::vec3(0.f, 0.f, 0.f), glm::vec2(0.f, 0.f)} };
+
+				Misc::Texture::Texture texture; // Texture.
 
 			};
 		}

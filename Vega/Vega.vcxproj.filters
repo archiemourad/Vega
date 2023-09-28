@@ -79,6 +79,18 @@
     <Filter Include="Header Files\Engine\Misc\Vertex">
       <UniqueIdentifier>{0ab10b81-66b0-4be1-9637-ad1fec1860b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Dependencies">
+      <UniqueIdentifier>{d317ac2d-4d01-4ea6-9ba0-9996a6b31344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Misc\Texture">
+      <UniqueIdentifier>{e5246571-f849-4ee5-ae4e-43ed401057b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Misc">
+      <UniqueIdentifier>{476087a2-f329-4867-a1a3-04995ea9f02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Misc\Texture">
+      <UniqueIdentifier>{90b2fa2f-e53e-49a5-9f57-77e95ebd020d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp">
@@ -116,6 +128,12 @@
     </ClCompile>
     <ClCompile Include="Render\Renderer.cpp">
       <Filter>Source Files\Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Dependencies\stb.cpp">
+      <Filter>Source Files\Engine\Dependencies</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc\Texture\Texture.cpp">
+      <Filter>Source Files\Engine\Misc\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="Misc\Vertex\Vertex.h">
       <Filter>Header Files\Engine\Misc\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\Texture\Texture.h">
+      <Filter>Header Files\Engine\Misc\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Vega.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

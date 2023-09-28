@@ -11,6 +11,7 @@ void Render::Renderer::Draw(Core::Window* window)
 	// Get locations prior.
 	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 	GLuint modelLocation = glGetUniformLocation(window->GetSP(), "model");
+	GLuint samplerLocation = glGetUniformLocation(window->GetSP(), "sampler");
 
 	if (window->GetScene().GetCameras().GetMembers().empty()) {
 		// No need to keep track here.
@@ -34,11 +35,16 @@ void Render::Renderer::Draw(Core::Window* window)
 		glBindBuffer(GL_ARRAY_BUFFER, object->GetVBO());
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Misc::Vertex::Vertex), (void*)offsetof(Misc::Vertex::Vertex, texCoord));
 
+		// Serve to shader.
 		glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->ComputeMVP();
 		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, glm::value_ptr(mvp));
 
 		glm::mat4 model = object->ComputeModel();
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+
+		glUniform1i(samplerLocation, 0);
+
+		object->GetTexture().Bind(); // Texture.
 
 		// Callback.
 		PreRenderCallback(window);

@@ -2,6 +2,7 @@
 #include "../Helpers/Instance.h"
 #include "../Core/Window.h"
 #include "../Loader/Loader.h"
+#include "../Misc/Texture/Texture.h"
 
 #include "../Scene/Actors/Camera.h"
 #include "../Scene/Actors/Object.h"
@@ -22,9 +23,19 @@ int main()
 	const auto craneoData = Loader::LoadObjectFile(L"Assets/Objects/craneo.obj");
 	craneo->UpdateBuffers(craneoData);
 
+	Misc::Texture::Texture craneoTexture;
+	craneoTexture.LoadTexture("Assets/Textures/craneo.jpg");
+
+	craneo->SetTexture(craneoTexture);
+
 	const auto floor = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
 	const auto floorData = Loader::LoadObjectFile(L"Assets/Objects/floor.obj");
 	floor->UpdateBuffers(floorData);
+
+	Misc::Texture::Texture floorTexture;
+	floorTexture.LoadTexture("Assets/Textures/tiles.jpg");
+
+	floor->SetTexture(floorTexture);
 
 	floor->SetPos(glm::vec3(0.f, -5.f, 0.f)); // Position floor below craneo.
 	floor->SetAngle(45.f); // Rotate floor to face the camera.
