@@ -11,14 +11,22 @@
 
 using namespace Vega;
 
-int main()
+void SetupSkybox(std::shared_ptr<Core::Window> window)
 {
-	Helpers::Instance::Setup(); // Setup.
+	const auto skybox = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
+	const auto skyboxData = Loader::LoadObjectFile(L"Assets/Objects/skybox.obj");
+	skybox->UpdateBuffers(skyboxData);
 
-	// New window.
-	std::unique_ptr<Core::Window> window = std::make_unique<Core::Window>("Vega Engine", 800, 600);
+	Misc::Texture::Texture skyboxTexture;
+	skyboxTexture.LoadTexture("Assets/Textures/sky.jpg");
 
-	// Create/Load/Configure our objects.
+	skybox->SetTexture(skyboxTexture);
+
+	skybox->SetScale(glm::vec3(90.f, 90.f, 90.f)); // Resize skybox.
+}
+
+void SetupCraneo(std::shared_ptr<Core::Window> window)
+{
 	const auto craneo = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
 	const auto craneoData = Loader::LoadObjectFile(L"Assets/Objects/craneo.obj");
 	craneo->UpdateBuffers(craneoData);
@@ -27,7 +35,10 @@ int main()
 	craneoTexture.LoadTexture("Assets/Textures/craneo.jpg");
 
 	craneo->SetTexture(craneoTexture);
+}
 
+void SetupFloor(std::shared_ptr<Core::Window> window)
+{
 	const auto floor = window->GetScene().GetObjects().AddMember(Scene::Actors::Object());
 	const auto floorData = Loader::LoadObjectFile(L"Assets/Objects/floor.obj");
 	floor->UpdateBuffers(floorData);
@@ -39,6 +50,19 @@ int main()
 
 	floor->SetPos(glm::vec3(0.f, -5.f, 0.f)); // Position floor below craneo.
 	floor->SetAngle(45.f); // Rotate floor to face the camera.
+}
+
+int main()
+{
+	Helpers::Instance::Setup(); // Setup.
+
+	// New window.
+	std::shared_ptr<Core::Window> window = std::make_shared<Core::Window>("Vega Engine", 800, 600);
+
+	// Create/Load/Configure our objects.
+	SetupSkybox(window);
+	SetupCraneo(window);
+	SetupFloor(window);
 
 	// Create our camera.
 	const auto camera = window->GetScene().GetCameras().AddMember(
