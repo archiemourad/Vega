@@ -61,6 +61,7 @@ int main()
 
 	// Create/Load/Configure our objects.
 	SetupSkybox(window);
+
 	SetupCraneo(window);
 	SetupFloor(window);
 
