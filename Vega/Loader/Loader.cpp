@@ -2,13 +2,13 @@
 
 using namespace Vega;
 
-std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> Loader::LoadObjectFile(const std::wstring filePath)
+std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>> Loader::LoadObjectFile(const std::wstring filePath)
 {
 	bool result = true;
 
 	Helpers::Debug::Log(L"Loading object file: " + filePath + L"!");
 
-	const std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> data = ReadObjectFile(filePath);
+	const std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>>> data = ReadObjectFile(filePath);
 
 	if (!data.first) result = false;
 
@@ -18,20 +18,22 @@ std::pair<std::vector<unsigned int>, std::vector<glm::vec3>> Loader::LoadObjectF
 	if (!result) {
 		Helpers::Debug::Log(L"Warning! Fallback. Object loading failed.");
 
-		return { std::vector<unsigned int>{ 0 }, std::vector<glm::vec3>{ glm::vec3(0.f, 0.f, 0.f) } };
+		return { std::vector<unsigned int>{ 0 }, std::vector<Misc::Vertex::Vertex>{ {glm::vec3(0.f, 0.f, 0.f), glm::vec2(0.f, 0.f)} } };
 	}
 
 	return { data.second.first, data.second.second };
 }
 
-std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> Loader::ReadObjectFile(const std::wstring filePath)
+std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>>> Loader::ReadObjectFile(const std::wstring filePath)
 {
 	bool result = true;
 
 	std::ifstream file(filePath);
 
 	std::vector<unsigned int> indices;
-	std::vector<glm::vec3> vertices;
+	std::vector<Misc::Vertex::Vertex> vertices;
+
+	std::vector<glm::vec2> texcoords;
 
 	std::string line;
 
@@ -42,10 +44,17 @@ std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> Lo
 			iss >> prefix;
 
 			if (prefix == "v") {
-				glm::vec3 vertex;
-				iss >> vertex.x >> vertex.y >> vertex.z;
+				Misc::Vertex::Vertex vertex;
+				iss >> vertex.position.x >> vertex.position.y >> vertex.position.z;
 
 				vertices.push_back(vertex);
+			}
+
+			if (prefix == "vt") {
+				glm::vec2 texcoord;
+				iss >> texcoord.x >> texcoord.y;
+
+				texcoords.push_back(texcoord);
 			}
 
 			std::replace(line.begin(), line.end(), '/', ' '); // Format.
@@ -53,21 +62,26 @@ std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>> Lo
 			fiss >> prefix;
 
 			if (prefix == "f") {
-				unsigned int values[3] = { 0, 0, 0 };
+				std::vector<glm::vec3> vecs;
 
-				std::string word;
-				unsigned int pos = 0;
+				// Get data.
+				for (unsigned int i = 0; i < 3; i++) {
+					glm::vec3 vec = glm::vec3(0.f, 0.f, 0.f);
 
-				for (unsigned int i = 0; i < 9; i++) {
-					fiss >> word;
+					std::string word;
 
-					if (i % 3 == 0) {
-						values[pos] = stoi(word);
-						pos++;
+					for (unsigned int i = 0; i < 3; i++) {
+						fiss >> word;
+						vec[i] = stoi(word);
 					}
+
+					vecs.push_back(vec); // Update.
 				}
 
-				for (unsigned int value : values) indices.push_back(value);
+				for (glm::vec3 vec : vecs) {
+					indices.push_back(vec[0]);
+					vertices[vec[0] - 1].texCoord = texcoords[vec[1] - 1];
+				}
 			}
 		}
 

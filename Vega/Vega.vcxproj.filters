@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Engine\Render">
       <UniqueIdentifier>{67abbe46-6bb4-43fc-a735-ebcb26d3b566}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Misc">
+      <UniqueIdentifier>{971d1987-ebf7-4b87-983a-5936222498dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Misc\Vertex">
+      <UniqueIdentifier>{0ab10b81-66b0-4be1-9637-ad1fec1860b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp">
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Render\Renderer.h">
       <Filter>Header Files\Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\Vertex\Vertex.h">
+      <Filter>Header Files\Engine\Misc\Vertex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

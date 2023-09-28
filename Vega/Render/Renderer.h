@@ -3,6 +3,7 @@
 #include "../Dependencies/GLM.h"
 
 #include "../Core/Window.h"
+#include "../Misc/Vertex/Vertex.h"
 
 #include "../Scene/Actors/Camera.h"
 #include "../Scene/Actors/Object.h"

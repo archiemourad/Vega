@@ -157,6 +157,7 @@
     <ClCompile Include="Scene\Actors\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Misc\Vertex\Vertex.h" />
     <ClInclude Include="Scene\Actors\Object.h" />
     <ClInclude Include="Scene\Actor.h" />
     <ClInclude Include="Util\Cast.h" />

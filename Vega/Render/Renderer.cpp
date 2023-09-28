@@ -25,9 +25,14 @@ void Render::Renderer::Draw(Core::Window* window)
 		// Setup.
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object->GetEBO());
 
+		// Attributes.
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, object->GetVBO());
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Misc::Vertex::Vertex), (void*)offsetof(Misc::Vertex::Vertex, position));
+
+		glEnableVertexAttribArray(1);
+		glBindBuffer(GL_ARRAY_BUFFER, object->GetVBO());
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Misc::Vertex::Vertex), (void*)offsetof(Misc::Vertex::Vertex, texCoord));
 
 		glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->ComputeMVP();
 		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, glm::value_ptr(mvp));
@@ -51,6 +56,7 @@ void Render::Renderer::Draw(Core::Window* window)
 
 		// Cleanup.
 		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
 	}
 
 	glfwSwapBuffers(window->GetWindow());

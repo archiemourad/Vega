@@ -2,6 +2,7 @@
 #include "../../Dependencies/GL.h"
 
 #include "../Actor.h"
+#include "../../Misc/Vertex/Vertex.h"
 
 #include <vector>
 
@@ -24,7 +25,7 @@ namespace Vega
 				/// </summary>
 				/// <param name="data"></param>
 				/// <returns>A success boolean (did succeed?).</returns>
-				bool UpdateBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data);
+				bool UpdateBuffers(const std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>>& data);
 
 				// Getters & Setters.
 
@@ -40,8 +41,8 @@ namespace Vega
 				std::vector<unsigned int>& GetIndices() { return indices; }
 				void SetIndices(std::vector<unsigned int> indices) { this->indices = indices; }
 
-				std::vector<glm::vec3>& GetVertices() { return vertices; }
-				void SetVertices(std::vector<glm::vec3> vertices) { this->vertices = vertices; }
+				std::vector<Misc::Vertex::Vertex>& GetVertices() { return vertices; }
+				void SetVertices(std::vector<Misc::Vertex::Vertex> vertices) { this->vertices = vertices; }
 
 			private:
 				// Objects.
@@ -53,7 +54,7 @@ namespace Vega
 				// Buffers.
 
 				std::vector<unsigned int> indices;
-				std::vector<glm::vec3> vertices = { glm::vec3(0.f, 0.f, 0.f) };
+				std::vector<Misc::Vertex::Vertex> vertices = { {glm::vec3(0.f, 0.f, 0.f), glm::vec2(0.f, 0.f)} };
 
 			};
 		}

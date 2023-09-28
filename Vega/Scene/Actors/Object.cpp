@@ -13,10 +13,10 @@ void Scene::Actors::Object::RefreshBuffers()
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices.front(), GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Misc::Vertex::Vertex), &vertices.front(), GL_DYNAMIC_DRAW);
 }
 
-bool Scene::Actors::Object::UpdateBuffers(const std::pair<std::vector<unsigned int>, std::vector<glm::vec3>>& data)
+bool Scene::Actors::Object::UpdateBuffers(const std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>>& data)
 {
 	if (data.first.empty() || data.second.empty()) return false; // Empty check.
 
