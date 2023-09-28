@@ -42,6 +42,9 @@ void Core::Window::Start()
 	// Callback.
 	StartCallback(this);
 
+	// Flag.
+	glEnable(GL_DEPTH_TEST);
+
 	// Render.
 	do {
 		renderer->Draw(this);
