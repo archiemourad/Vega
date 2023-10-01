@@ -8,14 +8,11 @@
 #include "../Scene/Actors/Camera.h"
 #include "../Scene/Actors/Object.h"
 
-#include <vector>
 #include <memory>
 #include <functional>
 
 namespace Vega
 {
-	namespace Core { class Window; }
-
 	namespace Render
 	{
 		class Renderer
@@ -25,21 +22,21 @@ namespace Vega
 			/// Renders the scene.
 			/// </summary>
 			/// <param name="window"></param>
-			void Draw(Core::Window* window);
+			void Draw(std::shared_ptr<Core::Window> window);
 
 			// Getters & Setters.
 
-			std::function<void(Core::Window* window)> GetPreRenderCallback() { return PreRenderCallback; }
-			void SetPreRenderCallback(std::function<void(Core::Window* window)> PreRenderCallback) { this->PreRenderCallback = PreRenderCallback; }
+			std::function<void(std::shared_ptr<Core::Window> window)> GetPreRenderCallback() { return PreRenderCallback; }
+			void SetPreRenderCallback(std::function<void(std::shared_ptr<Core::Window> window)> PreRenderCallback) { this->PreRenderCallback = PreRenderCallback; }
 
-			std::function<void(Core::Window* window)> GetPostRenderCallback() { return PostRenderCallback; }
-			void SetPostRenderCallback(std::function<void(Core::Window* window)> PostRenderCallback) { this->PostRenderCallback = PostRenderCallback; }
+			std::function<void(std::shared_ptr<Core::Window> window)> GetPostRenderCallback() { return PostRenderCallback; }
+			void SetPostRenderCallback(std::function<void(std::shared_ptr<Core::Window> window)> PostRenderCallback) { this->PostRenderCallback = PostRenderCallback; }
 
 		private:
 			// Callbacks.
 
-			std::function<void(Core::Window* window)> PreRenderCallback = [](Core::Window* window) {};
-			std::function<void(Core::Window* window)> PostRenderCallback = [](Core::Window* window) {};
+			std::function<void(std::shared_ptr<Core::Window> window)> PreRenderCallback = [](std::shared_ptr<Core::Window> window) {};
+			std::function<void(std::shared_ptr<Core::Window> window)> PostRenderCallback = [](std::shared_ptr<Core::Window> window) {};
 
 		};
 	}

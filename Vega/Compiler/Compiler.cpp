@@ -22,9 +22,7 @@ GLuint Compiler::CompileVertexShader(const std::wstring filePath)
 		glGetShaderInfoLog(VS, 512, NULL, log);
 		Helpers::Debug::Error(L"(" + filePath + L") Vertex shader compilation failed:\n" + Helpers::Conversion::CSTRtoWSTR(log));
 	}
-	else {
-		Helpers::Debug::Log(L"Compiled vertex shader: " + filePath + L"!");
-	}
+	else Helpers::Debug::Log(L"Compiled vertex shader: " + filePath + L"!");
 
 	return VS;
 }
@@ -49,9 +47,7 @@ GLuint Compiler::CompileFragmentShader(const std::wstring filePath)
 		glGetShaderInfoLog(FS, 512, NULL, log);
 		Helpers::Debug::Error(L"(" + filePath + L") Fragment shader compilation failed:\n" + Helpers::Conversion::CSTRtoWSTR(log));
 	}
-	else {
-		Helpers::Debug::Log(L"Compiled fragment shader: " + filePath + L"!");
-	}
+	else Helpers::Debug::Log(L"Compiled fragment shader: " + filePath + L"!");
 
 	return FS;
 }
@@ -75,9 +71,7 @@ GLuint Compiler::AssembleShaderProgram(GLuint vertexShader, GLuint fragmentShade
 		glGetProgramInfoLog(SP, 512, NULL, log);
 		Helpers::Debug::Error(L"Shader program linking failed:\n" + Helpers::Conversion::CSTRtoWSTR(log));
 	}
-	else {
-		Helpers::Debug::Log(L"Assembled shader program!");
-	}
+	else Helpers::Debug::Log(L"Assembled shader program!");
 
 	return SP;
 }

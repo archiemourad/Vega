@@ -30,13 +30,13 @@ namespace Vega
 
 				// Getters & Setters.
 
-				GLuint GetVAO() { return VAO; }
+				GLuint& GetVAO() { return VAO; }
 				void SetVAO(GLuint VAO) { this->VAO = VAO; }
 
-				GLuint GetEBO() { return EBO; }
+				GLuint& GetEBO() { return EBO; }
 				void SetEBO(GLuint EBO) { this->EBO = EBO; }
 
-				GLuint GetVBO() { return VBO; }
+				GLuint& GetVBO() { return VBO; }
 				void SetVBO(GLuint VBO) { this->VBO = VBO; }
 
 				std::vector<unsigned int>& GetIndices() { return indices; }

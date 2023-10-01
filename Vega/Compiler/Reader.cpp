@@ -17,9 +17,7 @@ std::string Compiler::Reader::ReadFile(const std::wstring filePath)
 
 		Helpers::Debug::Log(L"Read file: " + filePath + L"!");
 	}
-	else {
-		Helpers::Debug::Error(L"Failed to open file: " + filePath + L"!");
-	}
+	else Helpers::Debug::Error(L"Failed to open file: " + filePath + L"!");
 
 	return output;
 }

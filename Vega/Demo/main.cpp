@@ -1,6 +1,9 @@
 #include "../Helpers/Debug.h"
 #include "../Helpers/Instance.h"
+
 #include "../Core/Window.h"
+#include "../Render/Renderer.h"
+
 #include "../Loader/Loader.h"
 #include "../Misc/Texture/Texture.h"
 
@@ -58,6 +61,8 @@ int main()
 
 	// New window.
 	std::shared_ptr<Core::Window> window = std::make_shared<Core::Window>("Vega Engine", 800, 600);
+	// New renderer.
+	std::shared_ptr<Render::Renderer> renderer = std::make_shared<Render::Renderer>();
 
 	// Create/Load/Configure our objects.
 	SetupSkybox(window);
@@ -72,9 +77,14 @@ int main()
 
 	camera->SetPos(glm::vec3(5.f, 1.f, 5.f)); // Configure our camera.
 
+	window->Setup(); // Prepare the window for rendering.
+
 	Helpers::Debug::Log(L"Running!");
 
-	window->Start(); // Run!
+	// Draw/Render/Logic loop.
+	do { renderer->Draw(window); } while (glfwGetKey(window->GetWindow(), GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window->GetWindow()) == 0);
+
+	window->Cleanup(); // Cleanup after rendering.
 
 	Helpers::Instance::Cleanup(); // Cleanup.
 }

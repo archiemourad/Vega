@@ -2,7 +2,7 @@
 
 using namespace Vega;
 
-void Render::Renderer::Draw(Core::Window* window)
+void Render::Renderer::Draw(std::shared_ptr<Core::Window> window)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -12,15 +12,6 @@ void Render::Renderer::Draw(Core::Window* window)
 	GLuint mvpLocation = glGetUniformLocation(window->GetSP(), "mvp");
 	GLuint modelLocation = glGetUniformLocation(window->GetSP(), "model");
 	GLuint samplerLocation = glGetUniformLocation(window->GetSP(), "sampler");
-
-	if (window->GetScene().GetCameras().GetMembers().empty()) {
-		// No need to keep track here.
-		window->GetScene().GetCameras().AddMember(
-			Scene::Actors::Camera((float)window->GetDimensions().first / window->GetDimensions().second)
-		);
-
-		Helpers::Debug::Log(L"Warning! Camera preemptively created.");
-	}
 
 	for (std::shared_ptr<Scene::Actors::Object> object : window->GetScene().GetObjects().GetMembers()) {
 		// Setup.
@@ -36,7 +27,12 @@ void Render::Renderer::Draw(Core::Window* window)
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Misc::Vertex::Vertex), (void*)offsetof(Misc::Vertex::Vertex, texCoord));
 
 		// Serve to shader.
-		glm::mat4 mvp = window->GetScene().GetCameras().GetMembers().front()->ComputeMVP();
+		glm::mat4 mvp = glm::mat4(1.f);
+
+		// Empty check.
+		if (!window->GetScene().GetCameras().GetMembers().empty())
+			mvp = window->GetScene().GetCameras().GetMembers().front()->ComputeMVP();
+
 		glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, glm::value_ptr(mvp));
 
 		glm::mat4 model = object->ComputeModel();

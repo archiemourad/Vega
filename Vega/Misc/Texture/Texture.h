@@ -37,7 +37,7 @@ namespace Vega
 				int GetChannels() { return channels; }
 				void SetChannels(int channels) { this->channels = channels; }
 
-				GLuint GetTexture() { return texture; }
+				GLuint& GetTexture() { return texture; }
 				void SetTexture(GLuint texture) { this->texture = texture; }
 
 			private:

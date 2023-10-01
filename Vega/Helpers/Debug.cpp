@@ -31,9 +31,7 @@ std::wstring Helpers::Debug::Error(std::wstring msg, bool fatal, int code)
 
 	std::wcout << msg << "\n";
 
-	if (fatal) {
-		exit(code);
-	}
+	if (fatal) exit(code);
 
 	return msg;
 }

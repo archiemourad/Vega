@@ -23,7 +23,7 @@ Core::Window::Window(const char* title, const int width, const int height)
 	if (glewInit() != GLEW_OK) Helpers::Debug::Error(L"Failed to initialize GLEW.");
 }
 
-void Core::Window::Start()
+void Core::Window::Setup()
 {
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
@@ -39,17 +39,21 @@ void Core::Window::Start()
 	glDeleteShader(VS);
 	glDeleteShader(FS);
 
-	// Callback.
-	StartCallback(this);
-
 	// Flag.
 	glEnable(GL_DEPTH_TEST);
+}
 
-	// Render.
-	do {
-		renderer->Draw(this);
+void Core::Window::Cleanup()
+{
+	glDeleteProgram(SP);
 
-		RenderCallback(this); // Callback.
-	} while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
+	for (std::shared_ptr<Scene::Actors::Object> object : scene.GetObjects().GetMembers()) {
+		glDeleteVertexArrays(1, &object->GetVAO());
+
+		glDeleteBuffers(1, &object->GetEBO());
+		glDeleteBuffers(1, &object->GetVBO());
+
+		glDeleteTextures(1, &object->GetTexture().GetTexture());
+	}
 }
 
