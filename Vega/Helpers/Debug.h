@@ -41,6 +41,23 @@ namespace Vega
 				/// </summary>
 				/// <returns>The current time.</returns>
 				std::wstring GetTime();
+
+				/// <summary>
+				/// Get the current point in time.
+				/// </summary>
+				/// <returns>The point in time (time point).</returns>
+				std::chrono::system_clock::time_point GetTimePoint();
+
+				/// <summary>
+				/// Get the time elapsed between two time points (in ms).
+				/// </summary>
+				/// <param name="start"></param>
+				/// <param name="end"></param>
+				/// <returns>The time elapsed (in ms).</returns>
+				std::wstring GetTimeElapsed(
+					const std::chrono::system_clock::time_point start,
+					const std::chrono::system_clock::time_point end
+				);
 			}
 
 			namespace Formatting

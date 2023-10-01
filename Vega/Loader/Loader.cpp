@@ -8,12 +8,16 @@ std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>> Loader::
 
 	Helpers::Debug::Log(L"Loading object file: " + filePath + L"!");
 
+	const auto start = Helpers::Debug::Time::GetTimePoint();
 	const std::pair<bool, std::pair<std::vector<unsigned int>, std::vector<Misc::Vertex::Vertex>>> data = ReadObjectFile(filePath);
+	const auto end = Helpers::Debug::Time::GetTimePoint();
 
 	if (!data.first) result = false;
 
 	std::wstring reading = result ? L"Success!" : L"Failed!";
 	Helpers::Debug::DentLog(L"Reading: " + reading);
+
+	Helpers::Debug::DentLog(L"Completed in " + Helpers::Debug::Time::GetTimeElapsed(start, end) + L"ms.");
 
 	if (!result) {
 		Helpers::Debug::Log(L"Warning! Fallback. Object loading failed.");

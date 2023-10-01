@@ -47,6 +47,15 @@ std::wstring Helpers::Debug::Time::GetTime()
 	return Formatting::TrimNewline(std::wstring(&buffer[0], &buffer[strlen(buffer)]));
 }
 
+std::chrono::system_clock::time_point Helpers::Debug::Time::GetTimePoint() { return std::chrono::system_clock::now(); }
+
+std::wstring Helpers::Debug::Time::GetTimeElapsed(
+	const std::chrono::system_clock::time_point start,
+	const std::chrono::system_clock::time_point end
+) {
+	return std::to_wstring(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
+}
+
 std::wstring Helpers::Debug::Formatting::TrimNewline(std::wstring str)
 {
 	str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
