@@ -69,6 +69,15 @@ namespace Vega
 				/// <returns>The trimmed string.</returns>
 				std::wstring TrimNewline(std::wstring str);
 			}
+
+			namespace User
+			{
+				/// <summary>
+				/// Gets the desktops resolution.
+				/// </summary>
+				/// <returns>The desktops resolution.</returns>
+				std::pair<int, int> GetDesktopResolution();
+			}
 		}
 	}
 }

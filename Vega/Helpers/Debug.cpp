@@ -60,3 +60,14 @@ std::wstring Helpers::Debug::Formatting::TrimNewline(std::wstring str)
 	return str;
 }
 
+std::pair<int, int> Helpers::Debug::User::GetDesktopResolution()
+{
+	RECT desktop;
+
+	const HWND hDesktop = GetDesktopWindow();
+
+	GetWindowRect(hDesktop, &desktop);
+
+	return { desktop.right, desktop.bottom };
+}
+

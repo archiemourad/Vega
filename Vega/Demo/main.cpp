@@ -60,7 +60,8 @@ int main()
 	Helpers::Instance::Setup(); // Setup.
 
 	// New window.
-	std::shared_ptr<Core::Window> window = std::make_shared<Core::Window>("Vega Engine", 800, 600);
+	const std::pair<int, int> resolution = Helpers::Debug::User::GetDesktopResolution(); // Get the desktop resolution.
+	std::shared_ptr<Core::Window> window = std::make_shared<Core::Window>("Vega Engine", resolution.first / 2, resolution.second / 2);
 	// New renderer.
 	std::shared_ptr<Render::Renderer> renderer = std::make_shared<Render::Renderer>();
 
